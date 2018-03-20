@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/CNF.o: src/CNF.cpp.o
+
+.PHONY : src/CNF.o
+
+# target to build an object file
+src/CNF.cpp.o:
+	$(MAKE) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/CNF.cpp.o
+.PHONY : src/CNF.cpp.o
+
+src/CNF.i: src/CNF.cpp.i
+
+.PHONY : src/CNF.i
+
+# target to preprocess a source file
+src/CNF.cpp.i:
+	$(MAKE) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/CNF.cpp.i
+.PHONY : src/CNF.cpp.i
+
+src/CNF.s: src/CNF.cpp.s
+
+.PHONY : src/CNF.s
+
+# target to generate assembly for a file
+src/CNF.cpp.s:
+	$(MAKE) -f CMakeFiles/Projet.dir/build.make CMakeFiles/Projet.dir/src/CNF.cpp.s
+.PHONY : src/CNF.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/CNF.o"
+	@echo "... src/CNF.i"
+	@echo "... src/CNF.s"
 .PHONY : help
 
 

@@ -87,6 +87,12 @@
 		<Unit filename="/home/raphael/git/TPIA/Projet/main.cpp">
 			<Option target="Projet"/>
 		</Unit>
+		<Unit filename="/home/raphael/git/TPIA/Projet/src/CNF.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="/home/raphael/git/TPIA/Projet/src/CNF.h">
+			<Option target="Projet"/>
+		</Unit>
 		<Unit filename="/home/raphael/git/TPIA/Projet/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

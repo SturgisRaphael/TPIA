@@ -3,3 +3,11 @@
 
 CMakeFiles/Projet.dir/main.cpp.o
  /home/raphael/git/TPIA/Projet/main.cpp
+ /home/raphael/git/TPIA/Projet/src/CNF.h
+ /home/raphael/git/TPIA/Projet/src/clauseList.h
+ /home/raphael/git/TPIA/Projet/src/literalList.h
+CMakeFiles/Projet.dir/src/CNF.cpp.o
+ /home/raphael/git/TPIA/Projet/src/CNF.cpp
+ /home/raphael/git/TPIA/Projet/src/CNF.h
+ /home/raphael/git/TPIA/Projet/src/clauseList.h
+ /home/raphael/git/TPIA/Projet/src/literalList.h

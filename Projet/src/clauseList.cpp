@@ -4,6 +4,8 @@
 
 #include "clauseList.h"
 
+
+
 clauseList::clauseList(int clause) : clause(clause) {}
 
 int clauseList::getClause() const {
@@ -21,3 +23,5 @@ const clauseList &clauseList::getNext() const {
 void clauseList::setNext(const clauseList &next) {
     clauseList::next = next;
 }
+
+clauseList::clauseList() {}

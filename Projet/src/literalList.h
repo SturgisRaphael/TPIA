@@ -14,6 +14,8 @@ private:
 public:
     explicit literalList(int literal);
 
+
+
     int getLiteral() const;
 
     void setLiteral(int literal);

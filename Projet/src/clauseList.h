@@ -11,6 +11,8 @@ private:
     int clause;
     clauseList *next = nullptr;
 public:
+    clauseList();
+
     explicit clauseList(int clause);
 
     int getClause() const;

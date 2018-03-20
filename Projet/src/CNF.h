@@ -10,10 +10,18 @@
 #include "clauseList.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 enum heuristic {NO, FIRST_SATISFY, FIRST_FAIL};
+
+class Generator {
+
+public:
+static void GenereFile (int nbClauses, int nbLiterals);
+
+};
 
 class CNF {
 private:
@@ -22,7 +30,7 @@ private:
     vector<vector<int>> solutions;
 
 public:
-    void readFromFile(string addr);
+    static void readFromFile(string addr);
 
     void solve(int nbSolutions, heuristic h);
 };
