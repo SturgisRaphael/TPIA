@@ -91,10 +91,22 @@
 		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/CNF.h">
 			<Option target="Projet"/>
 		</Unit>
+		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.h">
+			<Option target="Projet"/>
+		</Unit>
 		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.cpp">
 			<Option target="Projet"/>
 		</Unit>
 		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.h">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.cpp">
+			<Option target="Projet"/>
+		</Unit>
+		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.h">
 			<Option target="Projet"/>
 		</Unit>
 		<Unit filename="D:/Raphael/Programing/Git/TPIA/Projet/CMakeLists.txt">

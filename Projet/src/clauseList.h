@@ -30,7 +30,7 @@ public:
 
     void addClause(int clause);
 
-    clauseList copyClauseList()const;
+    clauseList * copyClauseList()const;
 
     friend std::ostream &operator<<(std::ostream &os, const clauseList &list);
 };

@@ -140,22 +140,24 @@ bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
     for (int i = 0; i < pTree->getClauses().size(); i++) {
         if(pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getLiteral() > 0){
 
-            int currentLiteral = pTree->getClauses()[i].getLiteral(), currentNegLiteral;
-            if(currentLiteral%2 == 1)//positive
+            int currentLiteral = pTree->getClauses()[i].getLiteral() - 1, currentNegLiteral;//-1 neccesary because of indices
+            if(currentLiteral%2 == 0)//positive
                 currentNegLiteral = currentLiteral + 1;
             else
                 currentNegLiteral = currentLiteral - 1;
 
+            printf("lit = %d, negLit = %d\n", currentLiteral, currentNegLiteral);
+
             //verify negation not also a unit clause
-            if(pTree->getLiterals()[currentNegLiteral].getClause() > 0 && pTree->getLiterals()[currentNegLiteral].getNext() ==
+            /*if(pTree->getLiterals()[currentNegLiteral].getClause() > 0 && pTree->getLiterals()[currentNegLiteral].getNext() ==
                                                                                   nullptr)
                 cont = true;
-
+*/
             //remove clauses with currentLiteral
             clauseList *currentClause = &pTree->getLiterals()[currentLiteral];
             while(currentClause != nullptr){
-                pTree->getClauses()[currentClause->getClause()].setLiteral(-1);
-                pTree->getClauses()[currentClause->getClause()].setNext(nullptr);
+                pTree->getClauses()[currentClause->getClause() - 1].setLiteral(-1);
+                pTree->getClauses()[currentClause->getClause() - 1].setNext(nullptr);
 
                 currentClause = currentClause->getNext();
             }
@@ -168,7 +170,7 @@ bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
             {
                 currentClause = &pTree->getLiterals()[currentNegLiteral];
                 while (currentClause != nullptr) {
-                    pTree->getClauses()[currentClause->getClause()].deleteLiteral(currentNegLiteral);
+                    pTree->getClauses()[currentClause->getClause() - 1].deleteLiteral(currentNegLiteral + 1);
 
                     currentClause = currentClause->getNext();
                 }
@@ -176,7 +178,6 @@ bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
 
             pTree->getLiterals()[currentNegLiteral].setNext(nullptr);
             pTree->getLiterals()[currentNegLiteral].setClause(-1);
-
 
             pTree->getClauses()[i].setLiteral(-1);
         }

@@ -128,11 +128,61 @@ CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj.provides: CMakeFiles/Projet.d
 CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj.provides.build: CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj
 
 
+CMakeFiles/Projet.dir/src/clauseList.cpp.obj: CMakeFiles/Projet.dir/flags.make
+CMakeFiles/Projet.dir/src/clauseList.cpp.obj: ../src/clauseList.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Raphael\Programing\Git\TPIA\Projet\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Projet.dir/src/clauseList.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Projet.dir\src\clauseList.cpp.obj -c D:\Raphael\Programing\Git\TPIA\Projet\src\clauseList.cpp
+
+CMakeFiles/Projet.dir/src/clauseList.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projet.dir/src/clauseList.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Raphael\Programing\Git\TPIA\Projet\src\clauseList.cpp > CMakeFiles\Projet.dir\src\clauseList.cpp.i
+
+CMakeFiles/Projet.dir/src/clauseList.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projet.dir/src/clauseList.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Raphael\Programing\Git\TPIA\Projet\src\clauseList.cpp -o CMakeFiles\Projet.dir\src\clauseList.cpp.s
+
+CMakeFiles/Projet.dir/src/clauseList.cpp.obj.requires:
+
+.PHONY : CMakeFiles/Projet.dir/src/clauseList.cpp.obj.requires
+
+CMakeFiles/Projet.dir/src/clauseList.cpp.obj.provides: CMakeFiles/Projet.dir/src/clauseList.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/clauseList.cpp.obj.provides.build
+.PHONY : CMakeFiles/Projet.dir/src/clauseList.cpp.obj.provides
+
+CMakeFiles/Projet.dir/src/clauseList.cpp.obj.provides.build: CMakeFiles/Projet.dir/src/clauseList.cpp.obj
+
+
+CMakeFiles/Projet.dir/src/literalList.cpp.obj: CMakeFiles/Projet.dir/flags.make
+CMakeFiles/Projet.dir/src/literalList.cpp.obj: ../src/literalList.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Raphael\Programing\Git\TPIA\Projet\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Projet.dir/src/literalList.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Projet.dir\src\literalList.cpp.obj -c D:\Raphael\Programing\Git\TPIA\Projet\src\literalList.cpp
+
+CMakeFiles/Projet.dir/src/literalList.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projet.dir/src/literalList.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Raphael\Programing\Git\TPIA\Projet\src\literalList.cpp > CMakeFiles\Projet.dir\src\literalList.cpp.i
+
+CMakeFiles/Projet.dir/src/literalList.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projet.dir/src/literalList.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Raphael\Programing\Git\TPIA\Projet\src\literalList.cpp -o CMakeFiles\Projet.dir\src\literalList.cpp.s
+
+CMakeFiles/Projet.dir/src/literalList.cpp.obj.requires:
+
+.PHONY : CMakeFiles/Projet.dir/src/literalList.cpp.obj.requires
+
+CMakeFiles/Projet.dir/src/literalList.cpp.obj.provides: CMakeFiles/Projet.dir/src/literalList.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/literalList.cpp.obj.provides.build
+.PHONY : CMakeFiles/Projet.dir/src/literalList.cpp.obj.provides
+
+CMakeFiles/Projet.dir/src/literalList.cpp.obj.provides.build: CMakeFiles/Projet.dir/src/literalList.cpp.obj
+
+
 # Object files for target Projet
 Projet_OBJECTS = \
 "CMakeFiles/Projet.dir/main.cpp.obj" \
 "CMakeFiles/Projet.dir/src/CNF.cpp.obj" \
-"CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj"
+"CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj" \
+"CMakeFiles/Projet.dir/src/clauseList.cpp.obj" \
+"CMakeFiles/Projet.dir/src/literalList.cpp.obj"
 
 # External object files for target Projet
 Projet_EXTERNAL_OBJECTS =
@@ -140,11 +190,13 @@ Projet_EXTERNAL_OBJECTS =
 Projet.exe: CMakeFiles/Projet.dir/main.cpp.obj
 Projet.exe: CMakeFiles/Projet.dir/src/CNF.cpp.obj
 Projet.exe: CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj
+Projet.exe: CMakeFiles/Projet.dir/src/clauseList.cpp.obj
+Projet.exe: CMakeFiles/Projet.dir/src/literalList.cpp.obj
 Projet.exe: CMakeFiles/Projet.dir/build.make
 Projet.exe: CMakeFiles/Projet.dir/linklibs.rsp
 Projet.exe: CMakeFiles/Projet.dir/objects1.rsp
 Projet.exe: CMakeFiles/Projet.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Raphael\Programing\Git\TPIA\Projet\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Projet.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Raphael\Programing\Git\TPIA\Projet\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Projet.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Projet.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -155,6 +207,8 @@ CMakeFiles/Projet.dir/build: Projet.exe
 CMakeFiles/Projet.dir/requires: CMakeFiles/Projet.dir/main.cpp.obj.requires
 CMakeFiles/Projet.dir/requires: CMakeFiles/Projet.dir/src/CNF.cpp.obj.requires
 CMakeFiles/Projet.dir/requires: CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.obj.requires
+CMakeFiles/Projet.dir/requires: CMakeFiles/Projet.dir/src/clauseList.cpp.obj.requires
+CMakeFiles/Projet.dir/requires: CMakeFiles/Projet.dir/src/literalList.cpp.obj.requires
 
 .PHONY : CMakeFiles/Projet.dir/requires
 

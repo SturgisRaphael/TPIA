@@ -1,4 +1,15 @@
 C:\Users\Raphael\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\173.4674.29\bin\cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\Raphael\Programing\Git\TPIA\Projet
 -- Configuring done
+CMake Error at CMakeLists.txt:6 (add_executable):
+  Cannot find source file:
+
+    src/cl
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp
+  .hxx .in .txx
+
+
+CMake Error: CMake can not determine linker language for target: Projet
+CMake Error: Cannot determine link language for target "Projet".
 -- Generating done
 -- Build files have been written to: D:/Raphael/Programing/Git/TPIA/Projet/cmake-build-debug

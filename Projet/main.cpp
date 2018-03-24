@@ -1,7 +1,8 @@
 #include <iostream>
 #include "src/CNF.h"
-
-using namespace std;
+#include "src/cnfExecutionTree.h"
+#include "src/clauseList.h"
+#include "src/literalList.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -41,7 +42,16 @@ int main() {
 
     literalList literalList3 = literalList(1);
 
-    
+    vector<clauseList> literals = {clauseList1, clauseList2, clauseList3, clauseList4, clauseList5, clauseList6};
+    vector<literalList> clauses = {literalList1, literalList2, literalList3};
+
+    cnfExecutionTree tree = cnfExecutionTree(literals, clauses);
+
+    cout << "Before: " << tree << endl;
+
+    cout << "return = " << CNF::UnitPropagation(&tree) << endl;
+
+    cout << "After: " << tree << endl;
 
     return 0;
 }

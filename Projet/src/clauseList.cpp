@@ -24,14 +24,11 @@ void clauseList::setNext(clauseList *next) {
     clauseList::next = next;
 }
 
-clauseList clauseList::copyClauseList()const {
-    clauseList next;
+clauseList *clauseList::copyClauseList()const {
     if(this->next != nullptr)
-        next = this->next->copyClauseList();
+        return new clauseList(this->clause, this->next->copyClauseList());
     else
-        next = nullptr;
-
-    return clauseList(this->clause, &next);
+        return new clauseList(this->clause, nullptr);
 }
 
 clauseList::clauseList(int clause, clauseList *next) : clause(clause), next(next) {}
@@ -39,10 +36,10 @@ clauseList::clauseList(int clause, clauseList *next) : clause(clause), next(next
 clauseList::clauseList() : clause(-1){}
 
 std::ostream &operator<<(std::ostream &os, const clauseList &list) {
-    os << "clause: " << list.clause;
+    os << list.clause;
 
     if(list.next != nullptr)
-        os << ", " << list.next;
+        os << ", " << *list.next;
 
     return os;
 }

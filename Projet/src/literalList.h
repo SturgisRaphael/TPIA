@@ -34,7 +34,7 @@ public:
 
     bool isInList(int literal);
 
-    literalList copyLiteralList()const;
+    literalList * copyLiteralList()const;
 
     literalList();
 

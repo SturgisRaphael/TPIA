@@ -4,41 +4,37 @@
 
 #include "cnfExecutionTree.h"
 
-cnfExecutionTree::cnfExecutionTree(const vector<clauseList> &literals, const vector<literalList> &clauses) : literals(
-        literals), clauses(clauses) {
+cnfExecutionTree::cnfExecutionTree(const vector<clauseList> &literals, const vector<literalList> &clauses){
     for(const clauseList& l: literals){
-        this->literals.push_back(l.copyClauseList());
+        this->literals.push_back(*l.copyClauseList());
     }
 
     for(const literalList& c: clauses){
-        this->clauses.push_back(c.copyLiteralList());
+        this->clauses.push_back(*c.copyLiteralList());
     }
 }
 
 cnfExecutionTree::cnfExecutionTree(const vector<clauseList> &literals, const vector<literalList> &clauses,
-                                   const vector<int> &currentModel) : literals(literals), clauses(clauses),
-                                                                      currentModel(currentModel) {
+                                   const vector<int> &currentModel) : currentModel(currentModel) {
     for(const clauseList& l: literals){
-        this->literals.push_back(l.copyClauseList());
+        this->literals.push_back(*l.copyClauseList());
     }
 
     for(const literalList& c: clauses){
-        this->clauses.push_back(c.copyLiteralList());
+        this->clauses.push_back(*c.copyLiteralList());
     }
 }
 
 cnfExecutionTree::cnfExecutionTree(const vector<clauseList> &literals, const vector<literalList> &clauses,
-                                   const vector<int> &currentModel, cnfExecutionTree *pred) : literals(literals),
-                                                                                              clauses(clauses),
-                                                                                              currentModel(
+                                   const vector<int> &currentModel, cnfExecutionTree *pred) : currentModel(
                                                                                                       currentModel),
                                                                                               pred(pred) {
     for(const clauseList& l: literals){
-        this->literals.push_back(l.copyClauseList());
+        this->literals.push_back(*l.copyClauseList());
     }
 
     for(const literalList& c: clauses){
-        this->clauses.push_back(c.copyLiteralList());
+        this->clauses.push_back(*c.copyLiteralList());
     }
 }
 
@@ -94,11 +90,11 @@ std::ostream &operator<<(std::ostream &os, const cnfExecutionTree &tree) {
     os << "literals: [";
 
     for (auto literal : tree.literals) {
-        os << literal;
+        os << "{" << literal << "}";
     }
     os << "] clauses: [";
     for(auto clause :tree.clauses){
-        os << clause;
+        os << "{"  << clause << "}";
     }
 /*
     os << "] currentModel: " << tree.currentModel

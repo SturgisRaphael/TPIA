@@ -176,6 +176,33 @@ src/CNF.cpp.s:
 	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/CNF.cpp.s
 .PHONY : src/CNF.cpp.s
 
+src/clauseList.obj: src/clauseList.cpp.obj
+
+.PHONY : src/clauseList.obj
+
+# target to build an object file
+src/clauseList.cpp.obj:
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/clauseList.cpp.obj
+.PHONY : src/clauseList.cpp.obj
+
+src/clauseList.i: src/clauseList.cpp.i
+
+.PHONY : src/clauseList.i
+
+# target to preprocess a source file
+src/clauseList.cpp.i:
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/clauseList.cpp.i
+.PHONY : src/clauseList.cpp.i
+
+src/clauseList.s: src/clauseList.cpp.s
+
+.PHONY : src/clauseList.s
+
+# target to generate assembly for a file
+src/clauseList.cpp.s:
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/clauseList.cpp.s
+.PHONY : src/clauseList.cpp.s
+
 src/cnfExecutionTree.obj: src/cnfExecutionTree.cpp.obj
 
 .PHONY : src/cnfExecutionTree.obj
@@ -203,6 +230,33 @@ src/cnfExecutionTree.cpp.s:
 	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.s
 .PHONY : src/cnfExecutionTree.cpp.s
 
+src/literalList.obj: src/literalList.cpp.obj
+
+.PHONY : src/literalList.obj
+
+# target to build an object file
+src/literalList.cpp.obj:
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/literalList.cpp.obj
+.PHONY : src/literalList.cpp.obj
+
+src/literalList.i: src/literalList.cpp.i
+
+.PHONY : src/literalList.i
+
+# target to preprocess a source file
+src/literalList.cpp.i:
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/literalList.cpp.i
+.PHONY : src/literalList.cpp.i
+
+src/literalList.s: src/literalList.cpp.s
+
+.PHONY : src/literalList.s
+
+# target to generate assembly for a file
+src/literalList.cpp.s:
+	$(MAKE) -f CMakeFiles\Projet.dir\build.make CMakeFiles/Projet.dir/src/literalList.cpp.s
+.PHONY : src/literalList.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -218,9 +272,15 @@ help:
 	@echo ... src/CNF.obj
 	@echo ... src/CNF.i
 	@echo ... src/CNF.s
+	@echo ... src/clauseList.obj
+	@echo ... src/clauseList.i
+	@echo ... src/clauseList.s
 	@echo ... src/cnfExecutionTree.obj
 	@echo ... src/cnfExecutionTree.i
 	@echo ... src/cnfExecutionTree.s
+	@echo ... src/literalList.obj
+	@echo ... src/literalList.i
+	@echo ... src/literalList.s
 .PHONY : help
 
 
