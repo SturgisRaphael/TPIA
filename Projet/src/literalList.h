@@ -6,21 +6,23 @@
 #define PROJET_LITERALLIST_H
 
 
+#include <ostream>
+
 class literalList {
 private:
+
     int literal;
     literalList *next = nullptr;
+    literalList(int literal, literalList *next);
 
 public:
     explicit literalList(int literal);
-
-
 
     int getLiteral() const;
 
     void setLiteral(int literal);
 
-    const literalList &getNext() const;
+    literalList *getNext() const;
 
     void setNext(literalList *next);
 
@@ -31,6 +33,12 @@ public:
     void deleteLiteral(int literal);
 
     bool isInList(int literal);
+
+    literalList copyLiteralList()const;
+
+    literalList();
+
+    friend std::ostream &operator<<(std::ostream &os, const literalList &list);
 };
 
 

@@ -14,10 +14,6 @@ void literalList::setLiteral(int literal) {
     literalList::literal = literal;
 }
 
-const literalList &literalList::getNext() const {
-    return *next;
-}
-
 void literalList::setNext(literalList *next) {
     literalList::next = next;
 }
@@ -55,4 +51,31 @@ void literalList::deleteLiteral(int literal) {
 
         currentList->next = currentList->next->next;
     }
+}
+
+literalList::literalList(int literal, literalList *next) : literal(literal), next(next) {}
+
+literalList literalList::copyLiteralList()const {
+    literalList next;
+    if(this->next != nullptr)
+        next = this->next->copyLiteralList();
+    else
+        next = nullptr;
+
+    return literalList(this->literal, &next);
+}
+
+literalList::literalList() : literal(-1){}
+
+literalList *literalList::getNext() const {
+    return next;
+}
+
+std::ostream &operator<<(std::ostream &os, const literalList &list) {
+    os << list.literal;
+
+    if(list.next != nullptr)
+        os << ", " << list.next;
+
+    return os;
 }

@@ -6,10 +6,15 @@
 #define PROJET_CLAUSELIST_H
 
 
+#include <ostream>
+
 class clauseList {
 private:
     int clause;
     clauseList *next = nullptr;
+
+    clauseList(int clause, clauseList *next);
+
 public:
     clauseList();
 
@@ -19,9 +24,15 @@ public:
 
     void setClause(int clause);
 
-    const clauseList &getNext() const;
+    clauseList * getNext();
 
-    void setNext(const clauseList &next);
+    void setNext(clauseList *next);
+
+    void addClause(int clause);
+
+    clauseList copyClauseList()const;
+
+    friend std::ostream &operator<<(std::ostream &os, const clauseList &list);
 };
 
 

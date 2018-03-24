@@ -3,4 +3,4 @@ project(Projet)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Projet main.cpp src/CNF.cpp)
+add_executable(Projet main.cpp src/CNF.cpp src/cnfExecutionTree.cpp src/cnfExecutionTree.h)

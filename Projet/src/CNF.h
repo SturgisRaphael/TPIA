@@ -8,13 +8,12 @@
 
 #include "literalList.h"
 #include "clauseList.h"
+#include "cnfExecutionTree.h"
 #include <vector>
 #include <string>
 #include <iostream>
 
 using namespace std;
-
-enum heuristic {NO, FIRST_SATISFY, FIRST_FAIL};
 
 class Generator {
 
@@ -24,15 +23,20 @@ static void GenereFile (int nbClauses, int nbLiterals);
 };
 
 class CNF {
+    enum heuristic {NO, FIRST_SATISFY, FIRST_FAIL};
 private:
-    vector<clauseList> clauses;
-    vector<literalList> literals;
+    vector<clauseList> literals;
+    vector<literalList> clauses;
     vector<vector<int>> solutions;
+    int nbSolutionsFound;
 
 public:
     static void readFromFile(string addr);
+    void solve();
+    void solve(heuristic h);
+    void solve(int nbSolution, heuristic h);
 
-    void solve(int nbSolutions, heuristic h);
+    bool UnitPropagation(cnfExecutionTree *pTree);
 };
 
 
