@@ -75,45 +75,16 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
     literalList *tmp;
 
     do{
+        int currentLiteral = -1;
         executionTree = nodeToExplore.back();
         nodeToExplore.pop_back();
 
         //Unit propagation
-        if(UnitPropagation(executionTree))//Impossible state
+        if(!UnitPropagation(executionTree))//Impossible state
             continue;
-        /*
-        for(int i = 0; i < executionTree->getClauses().size(); i++){
-            if(executionTree->getClauses()[i].getNext() == nullptr && executionTree->getClauses()[i].getLiteral() != -1)
-            {
-                currentLiteral = executionTree->getClauses()[i].getLiteral();
-                if(currentLiteral%2 == 1)//positive
-                    currentNegLiteral = currentLiteral + 1;
-                else
-                    currentNegLiteral = currentLiteral - 1;
 
-                tmp = &executionTree->getClauses()[currentLiteral];
-                if(tmp->getLiteral() != -1){
+        //PureLiteral
 
-                    currentSolution.push_back(currentLiteral);
-
-                    while(tmp != nullptr){
-                        executionTree->getClauses()[tmp->getClause()].setLiteral(-1);
-                        executionTree->getClauses()[tmp->getClause()].setNext(nullptr);
-
-                        tmp = tmp->getNext();
-                    }
-
-                    executionTree->getLiterals()[currentLiteral].setNext(nullptr);
-                    executionTree->getLiterals()[currentLiteral].setClause(-1);
-
-                    executionTree->getClauses()[i].setLiteral(-1);
-                }
-                else{
-                    continue;
-                }
-
-            }
-        }*/
 
         //choose literal
         switch (h){
@@ -122,10 +93,29 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
             case FIRST_FAIL:
                 break;
             default:
-                currentLiteral = clauses[0].getLiteral();
+                for(currentLiteral = 0; currentLiteral < literals.size(); currentLiteral++)
+                {
+                    if(literals[currentLiteral].getClause() > 0)
+                    {
+                        if(currentLiteral%2 == 0)
+                            currentNegLiteral = currentLiteral + 1;
+                        else
+                            currentNegLiteral = currentLiteral - 1;
+
+                        if(literals[currentNegLiteral].getClause() == -1);
+                            //TODO: pure literal
+
+                        break;
+                    }
+                }
                 break;
         }
-        //look for mono-literal
+
+        if(currentLiteral == literals.size())
+        {
+            printf("found model\n");
+            continue;
+        }
 
         //explore left
 
@@ -136,7 +126,6 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
 }
 
 bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
-    bool cont = false;
     for (int i = 0; i < pTree->getClauses().size(); i++) {
         if(pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getLiteral() > 0){
 
@@ -149,15 +138,23 @@ bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
             printf("lit = %d, negLit = %d\n", currentLiteral, currentNegLiteral);
 
             //verify negation not also a unit clause
-            /*if(pTree->getLiterals()[currentNegLiteral].getClause() > 0 && pTree->getLiterals()[currentNegLiteral].getNext() ==
-                                                                                  nullptr)
-                cont = true;
-*/
+            for (auto &j : pTree->getClauses())
+                if(j.getLiteral() == currentNegLiteral + 1 && j.getNext() == nullptr)
+                    return false;
+
             //remove clauses with currentLiteral
             clauseList *currentClause = &pTree->getLiterals()[currentLiteral];
             while(currentClause != nullptr){
                 pTree->getClauses()[currentClause->getClause() - 1].setLiteral(-1);
                 pTree->getClauses()[currentClause->getClause() - 1].setNext(nullptr);
+
+                //remove from litteral list
+                //printf("clause = %d\n", currentClause->getClause());
+                for(int j = 0; j < pTree->getLiterals().size(); j++)
+                {
+                    std::cout << pTree->getLiterals()[j] << endl;
+                    pTree->getLiterals()[j].removeClause(currentClause->getClause());
+                }
 
                 currentClause = currentClause->getNext();
             }
@@ -180,9 +177,10 @@ bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
             pTree->getLiterals()[currentNegLiteral].setClause(-1);
 
             pTree->getClauses()[i].setLiteral(-1);
+            pTree->getCurrentModel().push_back(currentLiteral + 1);
         }
     }
 
-    return cont;
+    return true;
 }
 

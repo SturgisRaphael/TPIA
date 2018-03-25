@@ -52,3 +52,40 @@ void clauseList::addClause(int clause) {
 
     end->setNext(new clauseList(clause));
 }
+
+bool clauseList::isInList(int clause) {
+    clauseList *tmp = this;
+    while(tmp != nullptr){
+        if(tmp->getClause() == clause)
+            return true;
+        tmp = tmp->getNext();
+    }
+
+    return false;
+}
+
+void clauseList::removeClause(int clause) {
+    clauseList *tmp = this;
+    clauseList *pred = nullptr;
+
+    while(tmp != nullptr){
+        if(tmp->getClause() == clause)
+        {
+
+            if(tmp->getNext() != nullptr)
+            {
+                tmp->setClause(tmp->getNext()->getClause());
+                tmp->setNext(tmp->getNext()->getNext());
+                break;
+            }
+            else if(pred == nullptr)
+            {
+                tmp->setClause(-1);
+            } else{
+                pred->setNext(nullptr);
+            }
+        }
+        pred = tmp;
+        tmp = tmp->getNext();
+    }
+}

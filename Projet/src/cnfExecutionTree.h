@@ -38,7 +38,7 @@ public:
 
     void setClauses(const vector<literalList> &clauses);
 
-    const vector<int> &getCurrentModel() const;
+    vector<int> &getCurrentModel();
 
     void setCurrentModel(const vector<int> &currentModel);
 

@@ -54,7 +54,7 @@ void cnfExecutionTree::setClauses(const vector<literalList> &clauses) {
     cnfExecutionTree::clauses = clauses;
 }
 
-const vector<int> &cnfExecutionTree::getCurrentModel() const {
+vector<int> &cnfExecutionTree::getCurrentModel() {
     return currentModel;
 }
 
@@ -96,9 +96,14 @@ std::ostream &operator<<(std::ostream &os, const cnfExecutionTree &tree) {
     for(auto clause :tree.clauses){
         os << "{"  << clause << "}";
     }
-/*
-    os << "] currentModel: " << tree.currentModel
-       << " left: " << tree.left << " right: " << tree.right << " pred: " << tree.pred;
-*/
+
+    os << "] currentModel: [";
+
+    for(auto model :tree.currentModel){
+        os << model;
+    }
+
+    os << "]" << endl;
+
     return os;
 }

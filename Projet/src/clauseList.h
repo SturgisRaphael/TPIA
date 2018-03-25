@@ -30,6 +30,10 @@ public:
 
     void addClause(int clause);
 
+    bool isInList(int clause);
+
+    void removeClause(int clause);
+
     clauseList * copyClauseList()const;
 
     friend std::ostream &operator<<(std::ostream &os, const clauseList &list);
