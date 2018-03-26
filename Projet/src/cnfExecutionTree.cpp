@@ -100,10 +100,54 @@ std::ostream &operator<<(std::ostream &os, const cnfExecutionTree &tree) {
     os << "] currentModel: [";
 
     for(auto model :tree.currentModel){
-        os << model;
+        os << model << " ";
     }
 
     os << "]" << endl;
 
     return os;
+}
+
+bool cnfExecutionTree::assignLiteral(int literal, int negLiteral) {
+    //remove clauses with literal
+    clauseList *currentClause = &this->getLiterals()[literal - 1];
+    vector<int> clausesRemoved;
+    while(currentClause != nullptr){
+        int clause = currentClause->getClause();
+        this->getClauses()[clause - 1].setLiteral(-1);
+        this->getClauses()[clause - 1].setNext(nullptr);
+        clausesRemoved.push_back(clause);
+
+        currentClause = currentClause->getNext();
+    }
+
+
+    //remove from litteral list
+    for(auto &i : clausesRemoved)
+        for (auto &j : this->getLiterals())
+            j.removeClause(i);
+
+    this->getLiterals()[literal - 1].setNext(nullptr);
+    this->getLiterals()[literal - 1].setClause(-1);
+
+    //remove currentNegLiterals from all clauses
+    if(this->getLiterals()[negLiteral - 1].getClause() > 0)//there are NegLiterals to remove
+    {
+        currentClause = &this->getLiterals()[negLiteral - 1];
+        while (currentClause != nullptr) {
+            this->getClauses()[currentClause->getClause() - 1].deleteLiteral(negLiteral);
+
+            currentClause = currentClause->getNext();
+        }
+    }
+
+    this->getLiterals()[negLiteral - 1].setNext(nullptr);
+    this->getLiterals()[negLiteral - 1].setClause(-1);
+
+    this->getCurrentModel().push_back(literal);
+
+}
+
+cnfExecutionTree::cnfExecutionTree() {
+
 }

@@ -65,7 +65,7 @@ bool clauseList::isInList(int clause) {
 }
 
 void clauseList::removeClause(int clause) {
-    clauseList *tmp = this;
+    clauseList *tmp = this , *root = this;
     clauseList *pred = nullptr;
 
     while(tmp != nullptr){
@@ -88,4 +88,14 @@ void clauseList::removeClause(int clause) {
         pred = tmp;
         tmp = tmp->getNext();
     }
+}
+
+int clauseList::countClauses() {
+    int result = 0;
+    clauseList *tmp = this;
+    while(tmp != nullptr){
+        result++;
+        tmp = tmp->getNext();
+    }
+    return result;
 }

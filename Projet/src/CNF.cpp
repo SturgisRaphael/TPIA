@@ -3,10 +3,9 @@
 //
 
 #include <fstream>
-#include <sstream>
-#include <time.h>
+#include <ctime>
+#include <unistd.h>
 #include "CNF.h"
-#include "cnfExecutionTree.h"
 
 void Generator::GenereFile (int nbClauses, int nbLiterals){
     ofstream myfile;
@@ -63,7 +62,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
     int solutionsFound = 0;
     vector<int > currentSolution;
     int currentLiteral, currentNegLiteral;
-    cnfExecutionTree *executionTree;
+    cnfExecutionTree *executionTree, left, right;
     cnfExecutionTree root = cnfExecutionTree(this->literals, this->clauses);
     bool findAllSolution = false;
     if(nbSolution < 0)
@@ -72,10 +71,9 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
     vector<cnfExecutionTree *> nodeToExplore;
     nodeToExplore.push_back(&root);
 
-    literalList *tmp;
-
     do{
-        int currentLiteral = -1;
+        bool pure = false;
+        int currentLiteral = -1, pureLiteral;
         executionTree = nodeToExplore.back();
         nodeToExplore.pop_back();
 
@@ -83,27 +81,50 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         if(!UnitPropagation(executionTree))//Impossible state
             continue;
 
-        //PureLiteral
+        cout << *executionTree << endl;
 
-
+        int max;
         //choose literal
         switch (h){
             case FIRST_SATISFY:
+                max = 0;
+                for(int i = 0; i < executionTree->getLiterals().size(); i++)
+                {
+                    cout << "count = " << executionTree->getLiterals()[i].countClauses() << endl;
+                    if(executionTree->getLiterals()[i].countClauses() >= max){
+                        max = executionTree->getLiterals()[i].countClauses();
+                        currentLiteral = i;
+                    }
+
+                    if(currentLiteral%2 == 0)
+                        currentNegLiteral = currentLiteral + 1;
+                    else
+                        currentNegLiteral = currentLiteral - 1;
+
+                    if(executionTree->getLiterals()[currentNegLiteral].getClause() == -1){
+                        pure = true;
+                        pureLiteral = currentLiteral;
+                    }
+
+                }
+                cout << currentLiteral << "::" << currentNegLiteral << endl;
                 break;
             case FIRST_FAIL:
                 break;
             default:
-                for(currentLiteral = 0; currentLiteral < literals.size(); currentLiteral++)
+                for(currentLiteral = 0; currentLiteral < executionTree->getLiterals().size(); currentLiteral++)
                 {
-                    if(literals[currentLiteral].getClause() > 0)
+                    if(executionTree->getLiterals()[currentLiteral].getClause() != -1)
                     {
                         if(currentLiteral%2 == 0)
                             currentNegLiteral = currentLiteral + 1;
                         else
                             currentNegLiteral = currentLiteral - 1;
 
-                        if(literals[currentNegLiteral].getClause() == -1);
-                            //TODO: pure literal
+                        if(executionTree->getLiterals()[currentNegLiteral].getClause() == -1){
+                            pure = true;
+                            pureLiteral = currentLiteral;
+                        }
 
                         break;
                     }
@@ -111,76 +132,97 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                 break;
         }
 
-        if(currentLiteral == literals.size())
+        if(currentLiteral == executionTree->getLiterals().size() /*&& executionTree->getLiterals()[currentLiteral].getClause() == -1*/)
         {
-            printf("found model\n");
+            std::cout << "found model" << endl;
+            solutions.push_back(executionTree->getCurrentModel());
+            solutionsFound++;
             continue;
         }
 
-        //explore left
+        else{
+            if(pure){
+                currentLiteral = pureLiteral;
+                if(!findAllSolution)
+                {
+                    //explore left
+                    left = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+                    left.assignLiteral(currentNegLiteral + 1, currentLiteral + 1);
 
+                    nodeToExplore.push_back(&left);
+                    continue;
+                }
+            }
 
-        //explore right
+            //explore left
+            left = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+            left.assignLiteral(currentNegLiteral + 1, currentLiteral + 1);
+            //explore right
+            right = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+            right.assignLiteral(currentLiteral + 1, currentNegLiteral + 1);
 
-    }while((!findAllSolution && (solutionsFound < nbSolution)) && !nodeToExplore.empty());
+            nodeToExplore.push_back(&left);
+            nodeToExplore.push_back(&right);
+        }
+
+        sleep(1);
+    }while(/*(!findAllSolution && (solutionsFound < nbSolution)) ||*/ !nodeToExplore.empty());
 }
 
-bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
+bool CNF::UnitPropagation(cnfExecutionTree *pTree){
     for (int i = 0; i < pTree->getClauses().size(); i++) {
         if(pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getLiteral() > 0){
 
-            int currentLiteral = pTree->getClauses()[i].getLiteral() - 1, currentNegLiteral;//-1 neccesary because of indices
-            if(currentLiteral%2 == 0)//positive
+            int currentLiteral = pTree->getClauses()[i].getLiteral(), currentNegLiteral;//-1 neccesary because of indices
+            if(currentLiteral%2 == 1)//positive
                 currentNegLiteral = currentLiteral + 1;
             else
                 currentNegLiteral = currentLiteral - 1;
 
-            printf("lit = %d, negLit = %d\n", currentLiteral, currentNegLiteral);
-
             //verify negation not also a unit clause
             for (auto &j : pTree->getClauses())
-                if(j.getLiteral() == currentNegLiteral + 1 && j.getNext() == nullptr)
+                if(j.getLiteral() == currentNegLiteral && j.getNext() == nullptr)
                     return false;
 
-            //remove clauses with currentLiteral
-            clauseList *currentClause = &pTree->getLiterals()[currentLiteral];
-            while(currentClause != nullptr){
-                pTree->getClauses()[currentClause->getClause() - 1].setLiteral(-1);
-                pTree->getClauses()[currentClause->getClause() - 1].setNext(nullptr);
-
-                //remove from litteral list
-                //printf("clause = %d\n", currentClause->getClause());
-                for(int j = 0; j < pTree->getLiterals().size(); j++)
-                {
-                    std::cout << pTree->getLiterals()[j] << endl;
-                    pTree->getLiterals()[j].removeClause(currentClause->getClause());
-                }
-
-                currentClause = currentClause->getNext();
-            }
-
-            pTree->getLiterals()[currentLiteral].setNext(nullptr);
-            pTree->getLiterals()[currentLiteral].setClause(-1);
-
-            //remove currentNegLiterals from all clauses
-            if(pTree->getLiterals()[currentNegLiteral].getClause() > 0)//there are NegLiterals to remove
-            {
-                currentClause = &pTree->getLiterals()[currentNegLiteral];
-                while (currentClause != nullptr) {
-                    pTree->getClauses()[currentClause->getClause() - 1].deleteLiteral(currentNegLiteral + 1);
-
-                    currentClause = currentClause->getNext();
-                }
-            }
-
-            pTree->getLiterals()[currentNegLiteral].setNext(nullptr);
-            pTree->getLiterals()[currentNegLiteral].setClause(-1);
-
-            pTree->getClauses()[i].setLiteral(-1);
-            pTree->getCurrentModel().push_back(currentLiteral + 1);
+            pTree->assignLiteral(currentLiteral, currentNegLiteral);
         }
     }
 
     return true;
+}
+
+CNF::CNF(const vector<clauseList> &literals, const vector<literalList> &clauses) : literals(literals),
+                                                                                   clauses(clauses) {}
+
+const vector<clauseList> &CNF::getLiterals() const {
+    return literals;
+}
+
+void CNF::setLiterals(const vector<clauseList> &literals) {
+    CNF::literals = literals;
+}
+
+const vector<literalList> &CNF::getClauses() const {
+    return clauses;
+}
+
+void CNF::setClauses(const vector<literalList> &clauses) {
+    CNF::clauses = clauses;
+}
+
+const vector<vector<int>> &CNF::getSolutions() const {
+    return solutions;
+}
+
+void CNF::setSolutions(const vector<vector<int>> &solutions) {
+    CNF::solutions = solutions;
+}
+
+int CNF::getNbSolutionsFound() const {
+    return nbSolutionsFound;
+}
+
+void CNF::setNbSolutionsFound(int nbSolutionsFound) {
+    CNF::nbSolutionsFound = nbSolutionsFound;
 }
 

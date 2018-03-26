@@ -1,1 +1,3 @@
-/usr/bin/c++  -g   CMakeFiles/Projet.dir/main.cpp.o CMakeFiles/Projet.dir/src/CNF.cpp.o CMakeFiles/Projet.dir/src/cnfExecutionTree.cpp.o CMakeFiles/Projet.dir/src/clauseList.cpp.o CMakeFiles/Projet.dir/src/literalList.cpp.o  -o Projet 
+C:\Users\Raphael\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\173.4674.29\bin\cmake\bin\cmake.exe -E remove -f CMakeFiles\Projet.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\Projet.dir/objects.a @CMakeFiles\Projet.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\Projet.dir/objects.a -Wl,--no-whole-archive  -o Projet.exe -Wl,--out-implib,libProjet.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Projet.dir\linklibs.rsp

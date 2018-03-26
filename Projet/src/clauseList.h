@@ -37,6 +37,8 @@ public:
     clauseList * copyClauseList()const;
 
     friend std::ostream &operator<<(std::ostream &os, const clauseList &list);
+
+    int countClauses();
 };
 
 

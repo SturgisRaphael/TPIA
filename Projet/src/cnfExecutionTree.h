@@ -55,6 +55,10 @@ public:
     void setPred(cnfExecutionTree *pred);
 
     friend std::ostream &operator<<(std::ostream &os, const cnfExecutionTree &tree);
+
+    bool assignLiteral(int literal, int negLiteral);
+
+    cnfExecutionTree();
 };
 
 

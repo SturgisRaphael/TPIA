@@ -23,7 +23,6 @@ static void GenereFile (int nbClauses, int nbLiterals);
 };
 
 class CNF {
-    enum heuristic {NO, FIRST_SATISFY, FIRST_FAIL};
 private:
     vector<clauseList> literals;
     vector<literalList> clauses;
@@ -31,6 +30,25 @@ private:
     int nbSolutionsFound;
 
 public:
+    enum heuristic {NO, FIRST_SATISFY, FIRST_FAIL};
+    CNF(const vector<clauseList> &literals, const vector<literalList> &clauses);
+
+    const vector<clauseList> &getLiterals() const;
+
+    void setLiterals(const vector<clauseList> &literals);
+
+    const vector<literalList> &getClauses() const;
+
+    void setClauses(const vector<literalList> &clauses);
+
+    const vector<vector<int>> &getSolutions() const;
+
+    void setSolutions(const vector<vector<int>> &solutions);
+
+    int getNbSolutionsFound() const;
+
+    void setNbSolutionsFound(int nbSolutionsFound);
+
     static void readFromFile(string addr);
     void solve();
     void solve(heuristic h);

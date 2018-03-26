@@ -6,37 +6,35 @@
 
 #IncludeRegexTransform: 
 
-/home/raphael/git/TPIA/Projet/main.cpp
+D:/Raphael/Programing/Git/TPIA/Projet/main.cpp
 iostream
 -
 src/CNF.h
-/home/raphael/git/TPIA/Projet/src/CNF.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/CNF.h
 src/cnfExecutionTree.h
-/home/raphael/git/TPIA/Projet/src/cnfExecutionTree.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.h
 src/clauseList.h
-/home/raphael/git/TPIA/Projet/src/clauseList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.h
 src/literalList.h
-/home/raphael/git/TPIA/Projet/src/literalList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.h
 
-/home/raphael/git/TPIA/Projet/src/CNF.cpp
+D:/Raphael/Programing/Git/TPIA/Projet/src/CNF.cpp
 fstream
 -
-sstream
+ctime
 -
-time.h
+unistd.h
 -
 CNF.h
-/home/raphael/git/TPIA/Projet/src/CNF.h
-cnfExecutionTree.h
-/home/raphael/git/TPIA/Projet/src/cnfExecutionTree.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/CNF.h
 
-/home/raphael/git/TPIA/Projet/src/CNF.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/CNF.h
 literalList.h
-/home/raphael/git/TPIA/Projet/src/literalList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.h
 clauseList.h
-/home/raphael/git/TPIA/Projet/src/clauseList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.h
 cnfExecutionTree.h
-/home/raphael/git/TPIA/Projet/src/cnfExecutionTree.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.h
 vector
 -
 string
@@ -44,33 +42,33 @@ string
 iostream
 -
 
-/home/raphael/git/TPIA/Projet/src/clauseList.cpp
+D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.cpp
 clauseList.h
-/home/raphael/git/TPIA/Projet/src/clauseList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.h
 
-/home/raphael/git/TPIA/Projet/src/clauseList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.h
 ostream
 -
 
-/home/raphael/git/TPIA/Projet/src/cnfExecutionTree.cpp
+D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.cpp
 cnfExecutionTree.h
-/home/raphael/git/TPIA/Projet/src/cnfExecutionTree.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.h
 
-/home/raphael/git/TPIA/Projet/src/cnfExecutionTree.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/cnfExecutionTree.h
 clauseList.h
-/home/raphael/git/TPIA/Projet/src/clauseList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/clauseList.h
 literalList.h
-/home/raphael/git/TPIA/Projet/src/literalList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.h
 vector
 -
 ostream
 -
 
-/home/raphael/git/TPIA/Projet/src/literalList.cpp
+D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.cpp
 literalList.h
-/home/raphael/git/TPIA/Projet/src/literalList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.h
 
-/home/raphael/git/TPIA/Projet/src/literalList.h
+D:/Raphael/Programing/Git/TPIA/Projet/src/literalList.h
 ostream
 -
 

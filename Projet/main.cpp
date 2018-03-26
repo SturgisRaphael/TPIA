@@ -47,11 +47,18 @@ int main() {
 
     cnfExecutionTree tree = cnfExecutionTree(literals, clauses);
 
-    cout << "Before: " << tree << endl;
+    CNF cnf = CNF(literals, clauses);
 
-    cout << "return = " << CNF::UnitPropagation(&tree) << endl;
+    cnf.solve(CNF::FIRST_SATISFY);
 
-    cout << "After: " << tree << endl;
+    for(auto &i : cnf.getSolutions())
+    {
+        for(auto &j : i)
+            cout << j << ",";
+        cout << endl;
+    }
+
+    cout << endl;
 
     return 0;
 }
