@@ -81,7 +81,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         if(!UnitPropagation(executionTree))//Impossible state
             continue;
 
-        cout << *executionTree << endl;
+        //cout << *executionTree << endl;
 
         int max;
         //choose literal
@@ -96,7 +96,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                         currentLiteral = i;
                     }
 
-                    if(currentLiteral%2 == 0)
+                    if(currentLiteral%2 == 1)
                         currentNegLiteral = currentLiteral + 1;
                     else
                         currentNegLiteral = currentLiteral - 1;
@@ -107,7 +107,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                     }
 
                 }
-                cout << currentLiteral << "::" << currentNegLiteral << endl;
+                cout << currentLiteral << "::" << currentNegLiteral << "::" << pure << endl;
                 break;
             case FIRST_FAIL:
                 break;
@@ -214,15 +214,7 @@ const vector<vector<int>> &CNF::getSolutions() const {
     return solutions;
 }
 
-void CNF::setSolutions(const vector<vector<int>> &solutions) {
-    CNF::solutions = solutions;
-}
-
 int CNF::getNbSolutionsFound() const {
     return nbSolutionsFound;
-}
-
-void CNF::setNbSolutionsFound(int nbSolutionsFound) {
-    CNF::nbSolutionsFound = nbSolutionsFound;
 }
 
