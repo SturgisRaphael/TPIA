@@ -45,6 +45,11 @@ std::ostream &operator<<(std::ostream &os, const clauseList &list) {
 }
 
 void clauseList::addClause(int clause) {
+    if(this->clause == -1)
+    {
+        this->clause = clause;
+        return;
+    }
     clauseList *end = this;
 
     while(end->getNext() != nullptr)

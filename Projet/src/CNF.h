@@ -31,6 +31,9 @@ private:
 
 public:
     enum heuristic {NO, FIRST_SATISFY, FIRST_FAIL};
+
+    CNF();
+
     CNF(const vector<clauseList> &literals, const vector<literalList> &clauses);
 
     const vector<clauseList> &getLiterals() const;
@@ -49,7 +52,7 @@ public:
 
     void setNbSolutionsFound(int nbSolutionsFound);
 
-    static void readFromFile(string addr);
+    void readFromFile(string addr);
     void solve();
     void solve(heuristic h);
     void solve(int nbSolution, heuristic h);

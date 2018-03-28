@@ -28,6 +28,11 @@ bool literalList::isInList(int literal) {
 }
 
 void literalList::addLiteral(int literal) {
+    if(this->literal == -1)
+    {
+        this->literal = literal;
+        return;
+    }
     if(!this->isInList(literal)){
         literalList *currentList = this;
         while(currentList->next != nullptr){

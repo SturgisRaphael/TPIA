@@ -9,7 +9,9 @@ int main() {
 
     //Generator::GenereFile (20, 50);
 
-    //CNF::readFromFile("InfoClauses.txt");
+    CNF cnf;
+    cnf.readFromFile("InfoClauses.txt");
+
 
     /*
      * c1 = a | b | c
@@ -17,7 +19,7 @@ int main() {
      * c3 = a
      * a=1, -a = 2, b = 3, -b = 4, c = 5, -c = 6
      * */
-    clauseList clauseList1 = clauseList(1);
+    /*clauseList clauseList1 = clauseList(1);
     clauseList1.setNext(new clauseList(3));
 
     clauseList clauseList2 = clauseList(2);
@@ -58,7 +60,7 @@ int main() {
         cout << endl;
     }
 
-    cout << endl;
+    cout << endl;*/
 
     return 0;
 }

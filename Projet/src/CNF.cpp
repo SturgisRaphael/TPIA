@@ -5,6 +5,7 @@
 #include <fstream>
 #include <ctime>
 #include <unistd.h>
+#include <sstream>
 #include "CNF.h"
 
 void Generator::GenereFile (int nbClauses, int nbLiterals){
@@ -27,28 +28,35 @@ void Generator::GenereFile (int nbClauses, int nbLiterals){
 }
 
 void CNF::readFromFile(string addr) {
-    ifstream myfile;
-    myfile.open(addr);
-    string line;
-    getline(myfile, line);
-    int nbClauses;
+    std::ifstream infile(addr);
+    std::string line;
 
-    while ( getline(myfile, line)){
-        string delimiter = " ";
+    std::getline(infile, line);
 
-        size_t pos = 0;
-        string token;
-        while ((pos = line.find(delimiter)) != string::npos) {
-            token = line.substr(0, pos);
-            int literal = atoi(token.c_str());
+    std::istringstream iss(line);
+    int nbClauses, ;
 
-            line.erase(0, pos + delimiter.length());
-        }
-        cout << line << endl;
+
+    vector<clauseList> literals;
+    vector<literalList> clauses;
+    int i = 0;
+    while (std::getline(infile, line)) {
+        std::istringstream iss(line);
+        int valIn = -1;
+        do {
+            iss >> valIn;
+            clauses[i].addLiteral(valIn);
+            literals[valIn].addClause(i);
+        }while( valIn != 0);
+
+        cout << clauses[i] << endl;
+
+        i++;
     }
+    this->literals = literals;
+    this->clauses = clauses;
 
 }
-
 void CNF::solve() {
     solve(-1, NO);
 }
@@ -217,4 +225,6 @@ const vector<vector<int>> &CNF::getSolutions() const {
 int CNF::getNbSolutionsFound() const {
     return nbSolutionsFound;
 }
+
+CNF::CNF() {}
 

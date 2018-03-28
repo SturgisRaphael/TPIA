@@ -25,6 +25,8 @@ ctime
 -
 unistd.h
 -
+sstream
+-
 CNF.h
 /home/raphael/git/TPIA/Projet/src/CNF.h
 
