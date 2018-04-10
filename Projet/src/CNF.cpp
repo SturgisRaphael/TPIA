@@ -5,6 +5,7 @@
 #include <fstream>
 #include <ctime>
 #include <unistd.h>
+#include <sstream>
 #include "CNF.h"
 
 void Generator::GenereFile (int nbClauses, int nbLiterals){
@@ -27,28 +28,35 @@ void Generator::GenereFile (int nbClauses, int nbLiterals){
 }
 
 void CNF::readFromFile(string addr) {
-    ifstream myfile;
-    myfile.open(addr);
-    string line;
-    getline(myfile, line);
-    int nbClauses;
+    std::ifstream infile(addr);
+    std::string line;
 
-    while ( getline(myfile, line)){
-        string delimiter = " ";
+    std::getline(infile, line);
 
-        size_t pos = 0;
-        string token;
-        while ((pos = line.find(delimiter)) != string::npos) {
-            token = line.substr(0, pos);
-            int literal = atoi(token.c_str());
+    std::istringstream iss(line);
+    int nbClauses, ;
 
-            line.erase(0, pos + delimiter.length());
-        }
-        cout << line << endl;
+
+    vector<clauseList> literals;
+    vector<literalList> clauses;
+    int i = 0;
+    while (std::getline(infile, line)) {
+        std::istringstream iss(line);
+        int valIn = -1;
+        do {
+            iss >> valIn;
+            clauses[i].addLiteral(valIn);
+            literals[valIn].addClause(i);
+        }while( valIn != 0);
+
+        cout << clauses[i] << endl;
+
+        i++;
     }
+    this->literals = literals;
+    this->clauses = clauses;
 
 }
-
 void CNF::solve() {
     solve(-1, NO);
 }
@@ -81,7 +89,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         if(!UnitPropagation(executionTree))//Impossible state
             continue;
 
-        cout << *executionTree << endl;
+        //cout << *executionTree << endl;
 
         int max;
         //choose literal
@@ -96,7 +104,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                         currentLiteral = i;
                     }
 
-                    if(currentLiteral%2 == 0)
+                    if(currentLiteral%2 == 1)
                         currentNegLiteral = currentLiteral + 1;
                     else
                         currentNegLiteral = currentLiteral - 1;
@@ -107,7 +115,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                     }
 
                 }
-                cout << currentLiteral << "::" << currentNegLiteral << endl;
+                cout << currentLiteral << "::" << currentNegLiteral << "::" << pure << endl;
                 break;
             case FIRST_FAIL:
                 break;
@@ -214,15 +222,9 @@ const vector<vector<int>> &CNF::getSolutions() const {
     return solutions;
 }
 
-void CNF::setSolutions(const vector<vector<int>> &solutions) {
-    CNF::solutions = solutions;
-}
-
 int CNF::getNbSolutionsFound() const {
     return nbSolutionsFound;
 }
 
-void CNF::setNbSolutionsFound(int nbSolutionsFound) {
-    CNF::nbSolutionsFound = nbSolutionsFound;
-}
+CNF::CNF() {}
 
