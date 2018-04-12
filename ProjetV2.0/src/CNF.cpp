@@ -71,6 +71,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
 
         int max;
         //choose literal
+
         switch (h){
             case FIRST_SATISFY:
                 max = 0;
@@ -90,16 +91,16 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                         pure = true;
                         pureLiteral = currentLiteral;
                     }
-
                 }
                 break;
             case FIRST_FAIL:
                 break;
             default:
-                for(currentLiteral = 0; currentLiteral < executionTree->getLiterals().size(); currentLiteral++)
+                for(int i = 0; i < executionTree->getLiterals().size(); currentLiteral++)
                 {
                     if(executionTree->getLiterals()[currentLiteral].getElement() != -1)
                     {
+                        currentLiteral = i;
                         if(currentLiteral%2 == 0)
                             currentNegLiteral = currentLiteral + 1;
                         else
@@ -109,14 +110,12 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                             pure = true;
                             pureLiteral = currentLiteral;
                         }
-
-                        break;
                     }
                 }
                 break;
         }
 
-        if(currentLiteral == executionTree->getLiterals().size() /*&& executionTree->getLiterals()[currentLiteral].getClause() == -1*/)
+        if(currentLiteral == -1 /*&& executionTree->getLiterals()[currentLiteral].getClause() == -1*/)
         {
             solutions.push_back(executionTree->getCurrentModel());
             solutionsFound++;
@@ -125,6 +124,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
 
         else{
             if(pure){
+                cout << "pure = " << pureLiteral << endl;
                 currentLiteral = pureLiteral;
                 if(!findAllSolution)
                 {

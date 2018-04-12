@@ -50,7 +50,7 @@ int main() {
 
     cout << cnf << endl;
 
-    cnf.solve(CNF::FIRST_SATISFY);
+    cnf.solve();
 
     cout << cnf << endl;
 

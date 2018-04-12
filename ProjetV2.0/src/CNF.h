@@ -46,6 +46,7 @@ public:
     void solve(int nbSolution, heuristic h);
 
     static bool UnitPropagation(cnfExecutionTree *pTree);
+
 };
 
 
