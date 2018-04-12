@@ -15,9 +15,9 @@ linkedList *linkedList::getNext() const {
 }
 
 std::ostream &operator<<(std::ostream &os, const linkedList &list) {
-    os << "element: " << list.element;
+    os << list.element;
     if(list.next != nullptr)
-        os << " next: {" << *list.next << "}";
+        os << ", " << *list.next;
     return os;
 }
 
@@ -32,10 +32,12 @@ void linkedList::addElement(int element) {
 
 linkedList *linkedList::getLastElement() {
     linkedList* current = this;
-    while(current->next != nullptr){
+    linkedList* pred = this;
+    while(current != nullptr){
+        pred = current;
         current = current->next;
     }
-    return current;
+    return pred;
 }
 
 void linkedList::deleteElement(int element) {
@@ -89,4 +91,14 @@ linkedList::linkedList() {element = -1;}
 void linkedList::deleteList() {
     this->element = -1;
     this->next = nullptr;
+}
+
+linkedList linkedList::copy() {
+    linkedList l = linkedList(), *c = this;
+    while(c != nullptr && c->element != -1)
+    {
+        l.addElement(c->element);
+        c = c->next;
+    }
+    return l;
 }

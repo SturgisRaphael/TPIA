@@ -116,6 +116,15 @@ bool cnfExecutionTree::assignLiteral(int literal, int negLiteral) {
 
 }
 
-cnfExecutionTree::cnfExecutionTree(const vector<linkedList> &literals, const vector<linkedList> &clauses,
-                                   const vector<int> &currentModel) : literals(literals), clauses(clauses),
-                                                                      currentModel(currentModel) {}
+cnfExecutionTree::cnfExecutionTree( vector<linkedList> &literals, vector<linkedList> &clauses,
+                                   vector<int> &currentModel) {
+    for (auto literal : literals) {
+        this->literals.push_back(literal.copy());
+    }
+    for (auto clause : clauses) {
+        this->clauses.push_back(clause.copy());
+    }
+    for (int i : currentModel) {
+        this->currentModel.push_back(i);
+    }
+}

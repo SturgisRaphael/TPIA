@@ -13,6 +13,8 @@ src/linkedList.h
 /home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
 src/CNF.h
 /home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
+src/generator.h
+/home/raphael/git/TPIA/ProjetV2.0/src/generator.h
 vector
 -
 
@@ -22,6 +24,8 @@ iostream
 unistd.h
 -
 fstream
+-
+sstream
 -
 CNF.h
 /home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
@@ -47,6 +51,16 @@ vector
 -
 ostream
 -
+
+/home/raphael/git/TPIA/ProjetV2.0/src/generator.cpp
+iostream
+-
+generator.h
+/home/raphael/git/TPIA/ProjetV2.0/src/generator.h
+
+/home/raphael/git/TPIA/ProjetV2.0/src/generator.h
+CNF.h
+/home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
 
 /home/raphael/git/TPIA/ProjetV2.0/src/linkedList.cpp
 linkedList.h

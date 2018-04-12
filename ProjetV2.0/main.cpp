@@ -1,6 +1,7 @@
 #include <iostream>
 #include "src/linkedList.h"
 #include "src/CNF.h"
+#include "src/generator.h"
 #include <vector>
 
 using namespace std;
@@ -10,14 +11,20 @@ int main() {
 
     //Generator::GenereFile (20, 50);
 
-    //CNF::readFromFile("InfoClauses.txt");
+    /*
+    CNF cnf = CNF();
+    cnf.readFromFile("test.txt");
 
+    cnf.generateProblemFile("test2.txt");
+*/
     /*
      * c1 = a | b | c
      * c2 = -a | b | c
      * c3 = a
      * a=1, -a = 2, b = 3, -b = 4, c = 5, -c = 6
      * */
+
+/*
     linkedList clauseList1 = linkedList(1);
     clauseList1.addElement(3);
 
@@ -52,8 +59,10 @@ int main() {
 
     cnf.solve();
 
-    cnf.generateSolutionFile("test.txt");
+    cnf.generateSolutionFile("test2.txt");
+*/
 
+ /*
     cout << cnf << endl;
 
 
@@ -65,6 +74,14 @@ int main() {
     }
 
     cout << endl;
+*/
+
+    generator gen = generator(generator::CHESS, 4);
+    gen.getCnf().generateProblemFile("test.txt");
+    cout << gen.getCnf() << endl;
+
+    gen.getCnf().solve();
+    gen.getCnf().generateSolutionFile("test2.txt");
 
     return 0;
 }

@@ -27,6 +27,8 @@ public:
 
     CNF();
 
+
+
     vector<linkedList> &getLiterals();
 
     void setLiterals(const vector<linkedList> &literals);
@@ -47,8 +49,10 @@ public:
 
     static bool UnitPropagation(cnfExecutionTree *pTree);
 
-    void generateProblemFile(string addr);
+    void generateProblemFile(string addr)const;
     void generateSolutionFile(string addr);
+
+    void readFromFile(string addr);
 };
 
 

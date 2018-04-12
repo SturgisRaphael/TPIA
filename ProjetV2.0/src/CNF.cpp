@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <fstream>
+#include <sstream>
 #include "CNF.h"
 
 using namespace std;
@@ -38,6 +39,42 @@ int CNF::getNbSolutionsFound() const {
     return nbSolutionsFound;
 }
 
+void CNF::readFromFile(string addr) {
+    std::ifstream infile(addr);
+    std::string line;
+
+    std::getline(infile, line);
+
+    std::istringstream iss(line);
+    int nbClauses, nbLiterals;
+
+    iss >> nbClauses >> nbLiterals;
+
+    while (std::getline(infile, line)) {
+        std::istringstream iss(line);
+        int valIn = -1;
+        clauses.push_back(linkedList());
+        do {
+            iss >> valIn;
+            if(valIn == 0)
+                break;
+            clauses.back().addElement(valIn);
+        }while( valIn != 0);
+    }
+
+    vector<linkedList> vect = this->getClauses();
+    for(int j = 0; j < nbLiterals; j++)
+    {
+        linkedList l = linkedList();
+        for(int k= 0; k < vect.size(); k++)
+        {
+            if(vect[k].isInList(j + 1))
+                l.addElement(k+1);
+        }
+        this->getLiterals().push_back(l);
+    }
+}
+
 void CNF::solve() {
     solve(-1, NO);
 }
@@ -67,6 +104,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         nodeToExplore.pop_back();
 
         //Unit propagation
+
         if(!UnitPropagation(executionTree))//Impossible state
             continue;
 
@@ -116,6 +154,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                 }
                 break;
         }
+        cout <<  1 + currentLiteral << endl;
 
         if(currentLiteral == -1 /*&& executionTree->getLiterals()[currentLiteral].getClause() == -1*/)
         {
@@ -155,34 +194,45 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
 }
 
 bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
-    for (int i = 0; i < pTree->getClauses().size(); i++) {
-        if(pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getElement() > 0){
+    bool finish = false;
+    while(!finish) {
+        finish = true;
+        for (int i = 0; i < pTree->getClauses().size(); i++) {
+            if (pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getElement() > 0) {
+                finish = false;
+                int currentLiteral = pTree->getClauses()[i].getElement(), currentNegLiteral;//-1 neccesary because of indices
 
-            int currentLiteral = pTree->getClauses()[i].getElement(), currentNegLiteral;//-1 neccesary because of indices
-            if(currentLiteral%2 == 1)//positive
-                currentNegLiteral = currentLiteral + 1;
-            else
-                currentNegLiteral = currentLiteral - 1;
+                cout << "unit propagationn : " << currentLiteral << endl;
 
-            //verify negation not also a unit clause
-            for (auto &j : pTree->getClauses())
-                if(j.getElement() == currentNegLiteral && j.getNext() == nullptr)
-                    return false;
+                if (currentLiteral % 2 == 1)//positive
+                    currentNegLiteral = currentLiteral + 1;
+                else
+                    currentNegLiteral = currentLiteral - 1;
 
-            pTree->assignLiteral(currentLiteral, currentNegLiteral);
+                //verify negation not also a unit clause
+                for (auto &j : pTree->getClauses())
+                    if (j.getElement() == currentNegLiteral && j.getNext() == nullptr)
+                        return false;
+
+                //verify negation not in model
+                for (auto &j : pTree->getCurrentModel())
+                    if (j == currentNegLiteral)
+                        return false;
+
+                pTree->assignLiteral(currentLiteral, currentNegLiteral);
+            }
         }
     }
-
     return true;
 }
 
 ostream &operator<<(ostream &os, const CNF &cnf) {
     os << "literals: ";
     for(auto i : cnf.literals)
-        os << i << ",";
+        os << "[" << i << "];";
     os <<"\nclauses: ";
     for(auto i : cnf.clauses)
-        os << i << ",";
+        os << "[" << i << "];";
     os << "\nsolutions: ";
     for(auto i : cnf.solutions) {
         os << "[";
@@ -194,7 +244,7 @@ ostream &operator<<(ostream &os, const CNF &cnf) {
     return os;
 }
 
-void CNF::generateProblemFile(string addr) {
+void CNF::generateProblemFile(string addr)const {
     ofstream file;
     file.open(addr);
 
@@ -208,6 +258,7 @@ void CNF::generateProblemFile(string addr) {
             file << l->getElement() << " ";
             l = l->getNext();
         }
+        file << "0";
         file << endl;
     }
 

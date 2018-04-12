@@ -9,6 +9,7 @@
 #include "CNF.h"
 
 class generator {
+public:
     enum problem {PIGEON, RAMSEY, CHESS, SAT3};
 private:
     CNF cnf;
@@ -17,7 +18,19 @@ private:
 public:
     generator(problem pb, int sizeProblem);
 
+    CNF &getCnf();
+
+    problem getPb() const;
+
+    int getSizeProblem() const;
+
     void generatePigeon(int nbPigeon);
+
+    void genrateLiterals(int i);
+
+    void generateChess(int boardSize);
+
+    int generateVariable(int a, int b, int offset);
 };
 
 

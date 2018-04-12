@@ -25,8 +25,8 @@ public:
 
     cnfExecutionTree(const vector<linkedList> &literals, const vector<linkedList> &clauses);
 
-    cnfExecutionTree(const vector<linkedList> &literals, const vector<linkedList> &clauses,
-                     const vector<int> &currentModel);
+    cnfExecutionTree(vector<linkedList> &literals, vector<linkedList> &clauses,
+                     vector<int> &currentModel);
 
     vector<linkedList> &getLiterals();
 

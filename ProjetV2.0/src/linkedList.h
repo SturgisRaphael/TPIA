@@ -33,6 +33,8 @@ public:
     bool isInList(int element);
 
     int countElement();
+
+    linkedList copy();
 };
 
 
