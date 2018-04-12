@@ -52,6 +52,8 @@ int main() {
 
     cnf.solve();
 
+    cnf.generateSolutionFile("test.txt");
+
     cout << cnf << endl;
 
 

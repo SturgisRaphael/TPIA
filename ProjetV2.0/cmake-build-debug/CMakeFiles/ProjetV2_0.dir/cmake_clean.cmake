@@ -1,12 +1,11 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ProjetV2_0.dir/main.cpp.obj"
-  "CMakeFiles/ProjetV2_0.dir/src/linkedList.cpp.obj"
-  "CMakeFiles/ProjetV2_0.dir/src/CNF.cpp.obj"
-  "CMakeFiles/ProjetV2_0.dir/src/cnfExecutionTree.cpp.obj"
+  "CMakeFiles/ProjetV2_0.dir/main.cpp.o"
+  "CMakeFiles/ProjetV2_0.dir/src/linkedList.cpp.o"
+  "CMakeFiles/ProjetV2_0.dir/src/CNF.cpp.o"
+  "CMakeFiles/ProjetV2_0.dir/src/cnfExecutionTree.cpp.o"
+  "CMakeFiles/ProjetV2_0.dir/src/generator.cpp.o"
   "ProjetV2_0.pdb"
-  "ProjetV2_0.exe"
-  "ProjetV2_0.exe.manifest"
-  "libProjetV2_0.dll.a"
+  "ProjetV2_0"
 )
 
 # Per-language clean rules from dependency scanning.

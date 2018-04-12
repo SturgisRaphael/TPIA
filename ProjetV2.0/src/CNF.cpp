@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <fstream>
 #include "CNF.h"
 
 using namespace std;
@@ -13,7 +14,7 @@ CNF::CNF(const vector<linkedList> &literals, const vector<linkedList> &clauses) 
 
 CNF::CNF() {}
 
-const vector<linkedList> &CNF::getLiterals() const {
+vector<linkedList> &CNF::getLiterals(){
     return literals;
 }
 
@@ -21,7 +22,7 @@ void CNF::setLiterals(const vector<linkedList> &literals) {
     CNF::literals = literals;
 }
 
-const vector<linkedList> &CNF::getClauses() const {
+vector<linkedList> &CNF::getClauses(){
     return clauses;
 }
 
@@ -96,9 +97,9 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
             case FIRST_FAIL:
                 break;
             default:
-                for(int i = 0; i < executionTree->getLiterals().size(); currentLiteral++)
+                for(int i = 0; i < executionTree->getLiterals().size(); i++)
                 {
-                    if(executionTree->getLiterals()[currentLiteral].getElement() != -1)
+                    if(executionTree->getLiterals()[i].getElement() != -1)
                     {
                         currentLiteral = i;
                         if(currentLiteral%2 == 0)
@@ -109,6 +110,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                         if(executionTree->getLiterals()[currentNegLiteral].getElement() == -1){
                             pure = true;
                             pureLiteral = currentLiteral;
+                            break;
                         }
                     }
                 }
@@ -190,4 +192,43 @@ ostream &operator<<(ostream &os, const CNF &cnf) {
     }
     os << "\nnbSolutionsFound: " << cnf.nbSolutionsFound;
     return os;
+}
+
+void CNF::generateProblemFile(string addr) {
+    ofstream file;
+    file.open(addr);
+
+    file << this->clauses.size() << " " << this->literals.size() << endl;
+
+    for(auto i: clauses)
+    {
+        linkedList *l = &i;
+        while(l != nullptr && l->getElement() != -1)
+        {
+            file << l->getElement() << " ";
+            l = l->getNext();
+        }
+        file << endl;
+    }
+
+    file.close();
+}
+
+void CNF::generateSolutionFile(string addr) {
+    ofstream file;
+    file.open(addr);
+
+    file << "Number of solutions: " << this->nbSolutionsFound << endl;
+
+    for(int i = 0; i < solutions.size(); i++)
+    {
+       file << "solution n°" << i << ": [";
+       for(int j = 0; j < solutions[i].size() - 1; j++)
+       {
+           file << solutions[i][j] << ",";
+       }
+       file << solutions[i].back() << "]" << endl;
+    }
+
+    file.close();
 }

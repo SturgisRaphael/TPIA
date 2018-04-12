@@ -22,8 +22,12 @@ std::ostream &operator<<(std::ostream &os, const linkedList &list) {
 }
 
 void linkedList::addElement(int element) {
-    linkedList *newLink = new linkedList(element);
-    getLastElement()->next = newLink;
+    if (this->element == -1)
+        this->element = element;
+    else{
+        linkedList *newLink = new linkedList(element);
+        getLastElement()->next = newLink;
+    }
 }
 
 linkedList *linkedList::getLastElement() {

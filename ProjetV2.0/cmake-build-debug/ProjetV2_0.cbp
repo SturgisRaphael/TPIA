@@ -8,102 +8,110 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug"/>
+				<Option working_dir="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="ProjetV2_0">
-				<Option output="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/ProjetV2_0.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 ProjetV2_0"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="ProjetV2_0/fast">
-				<Option output="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/ProjetV2_0.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 ProjetV2_0/fast"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug"/>
+				<Option working_dir="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ProjetV2_0">
+				<Option output="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/ProjetV2_0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 ProjetV2_0"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ProjetV2_0/fast">
+				<Option output="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/ProjetV2_0" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 ProjetV2_0/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/main.cpp">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/main.cpp">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/CNF.cpp">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/CNF.cpp">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/CNF.h">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/CNF.h">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/cnfExecutionTree.cpp">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.cpp">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/cnfExecutionTree.h">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.h">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.cpp">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/generator.cpp">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.h">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/generator.h">
 			<Option target="ProjetV2_0"/>
 		</Unit>
-		<Unit filename="D:/Raphael/Programing/Git/TPIA/ProjetV2.0/CMakeLists.txt">
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.cpp">
+			<Option target="ProjetV2_0"/>
+		</Unit>
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h">
+			<Option target="ProjetV2_0"/>
+		</Unit>
+		<Unit filename="/home/raphael/git/TPIA/ProjetV2.0/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

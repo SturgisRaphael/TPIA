@@ -1,4 +1,4 @@
-C:\Users\Raphael\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\181.4203.549\bin\cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\Raphael\Programing\Git\TPIA\ProjetV2.0
+/home/raphael/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4445.84/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/raphael/git/TPIA/ProjetV2.0
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/Raphael/Programing/Git/TPIA/ProjetV2.0/cmake-build-debug
+-- Build files have been written to: /home/raphael/git/TPIA/ProjetV2.0/cmake-build-debug

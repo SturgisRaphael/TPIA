@@ -27,11 +27,11 @@ public:
 
     CNF();
 
-    const vector<linkedList> &getLiterals() const;
+    vector<linkedList> &getLiterals();
 
     void setLiterals(const vector<linkedList> &literals);
 
-    const vector<linkedList> &getClauses() const;
+    vector<linkedList> &getClauses();
 
     void setClauses(const vector<linkedList> &clauses);
 
@@ -47,6 +47,8 @@ public:
 
     static bool UnitPropagation(cnfExecutionTree *pTree);
 
+    void generateProblemFile(string addr);
+    void generateSolutionFile(string addr);
 };
 
 

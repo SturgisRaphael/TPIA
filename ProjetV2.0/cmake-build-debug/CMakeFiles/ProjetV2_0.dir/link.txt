@@ -1,3 +1,1 @@
-C:\Users\Raphael\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\181.4203.549\bin\cmake\bin\cmake.exe -E remove -f CMakeFiles\ProjetV2_0.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\ProjetV2_0.dir/objects.a @CMakeFiles\ProjetV2_0.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\ProjetV2_0.dir/objects.a -Wl,--no-whole-archive  -o ProjetV2_0.exe -Wl,--out-implib,libProjetV2_0.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ProjetV2_0.dir\linklibs.rsp
+/usr/bin/c++  -g   CMakeFiles/ProjetV2_0.dir/main.cpp.o CMakeFiles/ProjetV2_0.dir/src/linkedList.cpp.o CMakeFiles/ProjetV2_0.dir/src/CNF.cpp.o CMakeFiles/ProjetV2_0.dir/src/cnfExecutionTree.cpp.o CMakeFiles/ProjetV2_0.dir/src/generator.cpp.o  -o ProjetV2_0 

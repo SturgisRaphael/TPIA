@@ -6,51 +6,53 @@
 
 #IncludeRegexTransform: 
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/main.cpp
+/home/raphael/git/TPIA/ProjetV2.0/main.cpp
 iostream
 -
 src/linkedList.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.h
+/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
 src/CNF.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/CNF.h
+/home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
 vector
 -
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/CNF.cpp
+/home/raphael/git/TPIA/ProjetV2.0/src/CNF.cpp
 iostream
 -
 unistd.h
 -
+fstream
+-
 CNF.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/CNF.h
+/home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/CNF.h
+/home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
 linkedList.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.h
+/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
 cnfExecutionTree.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
+/home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
 vector
 -
 ostream
 -
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/cnfExecutionTree.cpp
+/home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.cpp
 cnfExecutionTree.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
+/home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
+/home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
 linkedList.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.h
+/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
 vector
 -
 ostream
 -
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.cpp
+/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.cpp
 linkedList.h
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.h
+/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
 
-D:/Raphael/Programing/Git/TPIA/ProjetV2.0/src/linkedList.h
+/home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
 ostream
 -
 
