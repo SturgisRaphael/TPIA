@@ -41,6 +41,8 @@ ostream
 -
 
 /home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.cpp
+iostream
+-
 cnfExecutionTree.h
 /home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
 

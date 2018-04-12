@@ -11,12 +11,14 @@ int main() {
 
     //Generator::GenereFile (20, 50);
 
-    /*
     CNF cnf = CNF();
-    cnf.readFromFile("test.txt");
+    cnf.readFromFile("test3.txt");
 
     cnf.generateProblemFile("test2.txt");
-*/
+
+    cnf.solve();
+
+    cout << cnf << endl;
     /*
      * c1 = a | b | c
      * c2 = -a | b | c
@@ -75,13 +77,13 @@ int main() {
 
     cout << endl;
 */
-
+/*
     generator gen = generator(generator::CHESS, 4);
     gen.getCnf().generateProblemFile("test.txt");
     cout << gen.getCnf() << endl;
 
     gen.getCnf().solve();
     gen.getCnf().generateSolutionFile("test2.txt");
-
+*/
     return 0;
 }

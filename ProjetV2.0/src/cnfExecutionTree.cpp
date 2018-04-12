@@ -2,6 +2,7 @@
 // Created by Raphael on 4/10/2018.
 //
 
+#include <iostream>
 #include "cnfExecutionTree.h"
 
 cnfExecutionTree::cnfExecutionTree(const vector<linkedList> &literals, const vector<linkedList> &clauses) : literals(
@@ -80,6 +81,7 @@ ostream &operator<<(ostream &os, const cnfExecutionTree &tree) {
 }
 
 bool cnfExecutionTree::assignLiteral(int literal, int negLiteral) {
+    cout << literal << " : " << negLiteral << endl;
     //remove clauses with literal
     linkedList *currentClause = &this->getLiterals()[literal - 1];
     vector<int> clausesRemoved;

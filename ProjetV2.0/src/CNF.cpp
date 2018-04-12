@@ -160,6 +160,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         {
             solutions.push_back(executionTree->getCurrentModel());
             solutionsFound++;
+            cout << "solution found!!" << endl;
             continue;
         }
 
@@ -169,18 +170,23 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                 currentLiteral = pureLiteral;
                 if(!findAllSolution)
                 {
-                    //explore left
-                    left = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
-                    left.assignLiteral(currentNegLiteral + 1, currentLiteral + 1);
+                    //explore right
+                    right = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+                    right.assignLiteral(currentLiteral + 1, currentNegLiteral + 1);
 
-                    nodeToExplore.push_back(&left);
+                    nodeToExplore.push_back(&right);
                     continue;
                 }
             }
 
+            cnfExecutionTree *tmp = new cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+
             //explore left
             left = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
             left.assignLiteral(currentNegLiteral + 1, currentLiteral + 1);
+
+            executionTree = tmp;
+
             //explore right
             right = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
             right.assignLiteral(currentLiteral + 1, currentNegLiteral + 1);

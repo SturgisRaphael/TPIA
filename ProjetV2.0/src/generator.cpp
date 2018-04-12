@@ -163,8 +163,7 @@ void generator::genrateLiterals(int i) {
     }
 }
 
-int generator::generateVariable(int a, int b, int offset)
-{
+int generator::generateVariable(int a, int b, int offset) {
     return a*offset + b;
 }
 
