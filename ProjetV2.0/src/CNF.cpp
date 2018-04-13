@@ -84,11 +84,12 @@ void CNF::solve(CNF::heuristic h) {
 }
 
 void CNF::solve(int nbSolution, CNF::heuristic h) {
-
     int solutionsFound = 0;
     vector<int > currentSolution;
     int currentLiteral, currentNegLiteral;
-    cnfExecutionTree *executionTree, left, right;
+    cnfExecutionTree *executionTree;
+    cnfExecutionTree *left;
+    cnfExecutionTree *right;
     cnfExecutionTree root = cnfExecutionTree(this->literals, this->clauses);
     bool findAllSolution = false;
     if(nbSolution < 0)
@@ -98,65 +99,30 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
     nodeToExplore.push_back(&root);
 
     do{
-        bool pure = false;
-        int currentLiteral = -1, pureLiteral = 0;
+        currentLiteral = -1;
         executionTree = nodeToExplore.back();
         nodeToExplore.pop_back();
 
         //Unit propagation
-
-        if(!UnitPropagation(executionTree))//Impossible state
+        if(!executionTree->UnitPropagation())//Impossible state
             continue;
 
-        int max;
         //choose literal
-
         switch (h){
             case FIRST_SATISFY:
-                max = 0;
-                for(int i = 0; i < executionTree->getLiterals().size(); i++)
-                {
-                    if(executionTree->getLiterals()[i].countElement() >= max){
-                        max = executionTree->getLiterals()[i].countElement();
-                        currentLiteral = i;
-                    }
-
-                    if(currentLiteral%2 == 0)
-                        currentNegLiteral = currentLiteral + 1;
-                    else
-                        currentNegLiteral = currentLiteral - 1;
-
-                    if(executionTree->getLiterals()[currentNegLiteral].getElement() == -1){
-                        pure = true;
-                        pureLiteral = currentLiteral;
-                    }
-                }
+                currentLiteral = executionTree->firstSatisfyHeuristic();
                 break;
             case FIRST_FAIL:
                 break;
             default:
-                for(int i = 0; i < executionTree->getLiterals().size(); i++)
-                {
-                    if(executionTree->getLiterals()[i].getElement() != -1)
-                    {
-                        currentLiteral = i;
-                        if(currentLiteral%2 == 0)
-                            currentNegLiteral = currentLiteral + 1;
-                        else
-                            currentNegLiteral = currentLiteral - 1;
-
-                        if(executionTree->getLiterals()[currentNegLiteral].getElement() == -1){
-                            pure = true;
-                            pureLiteral = currentLiteral;
-                            break;
-                        }
-                    }
-                }
+                currentLiteral = executionTree->noHeuristic();
                 break;
         }
-        cout <<  1 + currentLiteral << endl;
+        currentNegLiteral = negationOfVariable(currentLiteral + 1) - 1;
 
-        if(currentLiteral == -1 /*&& executionTree->getLiterals()[currentLiteral].getClause() == -1*/)
+        cout << "current variable = " << 1 + currentLiteral << endl;
+
+        if(currentLiteral == -1 || executionTree->getLiterals()[currentLiteral].getElement() == -1)
         {
             solutions.push_back(executionTree->getCurrentModel());
             solutionsFound++;
@@ -165,16 +131,15 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         }
 
         else{
-            if(pure){
-                cout << "pure = " << pureLiteral << endl;
-                currentLiteral = pureLiteral;
+            if(executionTree->isPureLiteral(currentLiteral + 1)){
+                cout << "pure = " << currentLiteral + 1 << endl;
                 if(!findAllSolution)
                 {
                     //explore right
-                    right = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
-                    right.assignLiteral(currentLiteral + 1, currentNegLiteral + 1);
+                    right = new cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+                    right->assignLiteral(currentLiteral + 1);
 
-                    nodeToExplore.push_back(&right);
+                    nodeToExplore.push_back(right);
                     continue;
                 }
             }
@@ -182,54 +147,21 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
             cnfExecutionTree *tmp = new cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
 
             //explore left
-            left = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
-            left.assignLiteral(currentNegLiteral + 1, currentLiteral + 1);
+            left = new cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+            left->assignLiteral(currentNegLiteral + 1);
 
             executionTree = tmp;
 
             //explore right
-            right = cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
-            right.assignLiteral(currentLiteral + 1, currentNegLiteral + 1);
+            right = new cnfExecutionTree(executionTree->getLiterals(), executionTree->getClauses(), executionTree->getCurrentModel());
+            right->assignLiteral(currentLiteral + 1);
 
-            nodeToExplore.push_back(&left);
-            nodeToExplore.push_back(&right);
+            nodeToExplore.push_back(left);
+            nodeToExplore.push_back(right);
         }
 
     }while((!findAllSolution && (solutionsFound < nbSolution)) || !nodeToExplore.empty());
     nbSolutionsFound = solutionsFound;
-}
-
-bool CNF::UnitPropagation(cnfExecutionTree *pTree) {
-    bool finish = false;
-    while(!finish) {
-        finish = true;
-        for (int i = 0; i < pTree->getClauses().size(); i++) {
-            if (pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getElement() > 0) {
-                finish = false;
-                int currentLiteral = pTree->getClauses()[i].getElement(), currentNegLiteral;//-1 neccesary because of indices
-
-                cout << "unit propagationn : " << currentLiteral << endl;
-
-                if (currentLiteral % 2 == 1)//positive
-                    currentNegLiteral = currentLiteral + 1;
-                else
-                    currentNegLiteral = currentLiteral - 1;
-
-                //verify negation not also a unit clause
-                for (auto &j : pTree->getClauses())
-                    if (j.getElement() == currentNegLiteral && j.getNext() == nullptr)
-                        return false;
-
-                //verify negation not in model
-                for (auto &j : pTree->getCurrentModel())
-                    if (j == currentNegLiteral)
-                        return false;
-
-                pTree->assignLiteral(currentLiteral, currentNegLiteral);
-            }
-        }
-    }
-    return true;
 }
 
 ostream &operator<<(ostream &os, const CNF &cnf) {
@@ -288,4 +220,12 @@ void CNF::generateSolutionFile(string addr) {
     }
 
     file.close();
+}
+
+int CNF::negationOfVariable(int literal) {
+    if(literal%2 == 1)
+        return literal + 1;
+    else
+        return literal - 1;
+
 }

@@ -49,6 +49,8 @@ cnfExecutionTree.h
 /home/raphael/git/TPIA/ProjetV2.0/src/cnfExecutionTree.h
 linkedList.h
 /home/raphael/git/TPIA/ProjetV2.0/src/linkedList.h
+CNF.h
+/home/raphael/git/TPIA/ProjetV2.0/src/CNF.h
 vector
 -
 ostream

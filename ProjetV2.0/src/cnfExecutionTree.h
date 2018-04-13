@@ -7,6 +7,7 @@
 
 
 #include "linkedList.h"
+#include "CNF.h"
 #include <vector>
 #include <ostream>
 
@@ -22,7 +23,7 @@ private:
 
 public:
     cnfExecutionTree();
-
+    bool UnitPropagation();
     cnfExecutionTree(const vector<linkedList> &literals, const vector<linkedList> &clauses);
 
     cnfExecutionTree(vector<linkedList> &literals, vector<linkedList> &clauses,
@@ -52,11 +53,15 @@ public:
 
     void setPred(cnfExecutionTree *pred);
 
+    int noHeuristic();
 
+    int firstSatisfyHeuristic();
 
-    bool assignLiteral(int literal, int negLiteral);
+    bool assignLiteral(int literal);
 
     friend ostream &operator<<(ostream &os, const cnfExecutionTree &tree);
+
+    bool isPureLiteral(int i);
 };
 
 

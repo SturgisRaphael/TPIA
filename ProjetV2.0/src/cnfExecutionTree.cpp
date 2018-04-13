@@ -80,12 +80,13 @@ ostream &operator<<(ostream &os, const cnfExecutionTree &tree) {
     return os;
 }
 
-bool cnfExecutionTree::assignLiteral(int literal, int negLiteral) {
-    cout << literal << " : " << negLiteral << endl;
+bool cnfExecutionTree::assignLiteral(int literal) {
+
+    int negLiteral = CNF::negationOfVariable(literal);
     //remove clauses with literal
     linkedList *currentClause = &this->getLiterals()[literal - 1];
     vector<int> clausesRemoved;
-    while(currentClause != nullptr){
+    while(currentClause != nullptr && currentClause->getElement() != -1){
         int clause = currentClause->getElement();
         this->getClauses()[clause - 1].deleteList();
         clausesRemoved.push_back(clause);
@@ -105,7 +106,7 @@ bool cnfExecutionTree::assignLiteral(int literal, int negLiteral) {
     if(this->getLiterals()[negLiteral - 1].getElement() > 0)//there are NegLiterals to remove
     {
         currentClause = &this->getLiterals()[negLiteral - 1];
-        while (currentClause != nullptr) {
+        while (currentClause != nullptr && currentClause->getElement() != -1) {
             this->getClauses()[currentClause->getElement() - 1].deleteElement(negLiteral);
 
             currentClause = currentClause->getNext();
@@ -129,4 +130,73 @@ cnfExecutionTree::cnfExecutionTree( vector<linkedList> &literals, vector<linkedL
     for (int i : currentModel) {
         this->currentModel.push_back(i);
     }
+}
+/*
+cnfExecutionTree::cnfExecutionTree(CNF cnf) {
+    this->literals = cnf.getLiterals();
+    this->clauses = cnf.getClauses();
+}*/
+
+bool cnfExecutionTree::UnitPropagation() {
+    cnfExecutionTree *pTree = this;
+    bool finish = false;
+    while(!finish) {
+        finish = true;
+        for (int i = 0; i < pTree->getClauses().size(); i++) {
+            if (pTree->getClauses()[i].getNext() == nullptr && pTree->getClauses()[i].getElement() > 0) {
+                finish = false;
+                int currentLiteral = pTree->getClauses()[i].getElement(), currentNegLiteral;//-1 neccesary because of indices
+
+                if (currentLiteral % 2 == 1)//positive
+                    currentNegLiteral = currentLiteral + 1;
+                else
+                    currentNegLiteral = currentLiteral - 1;
+
+                //verify negation not also a unit clause
+                for (auto &j : pTree->getClauses())
+                    if (j.getElement() == currentNegLiteral && j.getNext() == nullptr)
+                        return false;
+
+                //verify negation not in model
+                for (auto &j : pTree->getCurrentModel())
+                    if (j == currentNegLiteral)
+                        return false;
+
+                pTree->assignLiteral(currentLiteral);
+            }
+        }
+    }
+    return true;
+}
+
+bool cnfExecutionTree::isPureLiteral(int i) {
+    if(this->getLiterals()[CNF::negationOfVariable(i) - 1].getElement() == -1){
+        return true;
+    }
+}
+
+int cnfExecutionTree::noHeuristic() {
+    int currentLiteral = -1;
+    for(int i = 0; i < this->getLiterals().size(); i++) {
+        if (this->getLiterals()[i].getElement() != -1) {
+            currentLiteral = i;
+
+            if(isPureLiteral(currentLiteral + 1))
+                return currentLiteral;
+        }
+    }
+    return currentLiteral;
+}
+
+int cnfExecutionTree::firstSatisfyHeuristic() {
+    int max = 0;
+    int currentLiteral = -1;
+    for(int i = 0; i < this->getLiterals().size(); i++)
+    {
+        if(this->getLiterals()[i].countElement() >= max){
+            max = this->getLiterals()[i].countElement();
+            currentLiteral = i;
+        }
+    }
+    return currentLiteral;
 }

@@ -47,12 +47,13 @@ public:
     void solve(heuristic h);
     void solve(int nbSolution, heuristic h);
 
-    static bool UnitPropagation(cnfExecutionTree *pTree);
-
     void generateProblemFile(string addr)const;
     void generateSolutionFile(string addr);
 
     void readFromFile(string addr);
+
+    static int negationOfVariable(int literal);
+
 };
 
 

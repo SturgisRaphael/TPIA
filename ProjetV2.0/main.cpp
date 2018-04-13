@@ -14,11 +14,16 @@ int main() {
     CNF cnf = CNF();
     cnf.readFromFile("test3.txt");
 
-    cnf.generateProblemFile("test2.txt");
+    cnfExecutionTree *executionTree = new cnfExecutionTree(cnf.getLiterals(), cnf.getClauses());
 
-    cnf.solve();
+    //cnf.solve();
+    //cout << cnf << endl;
+    //cout << executionTree << endl;
 
-    cout << cnf << endl;
+//    cnf.generateProblemFile("test2.txt");
+
+//    cnf.solve();
+
     /*
      * c1 = a | b | c
      * c2 = -a | b | c
@@ -77,13 +82,13 @@ int main() {
 
     cout << endl;
 */
-/*
-    generator gen = generator(generator::CHESS, 4);
+
+    generator gen = generator(generator::CHESS, 5);
     gen.getCnf().generateProblemFile("test.txt");
     cout << gen.getCnf() << endl;
 
     gen.getCnf().solve();
     gen.getCnf().generateSolutionFile("test2.txt");
-*/
+
     return 0;
 }
