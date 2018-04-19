@@ -18,6 +18,8 @@ private:
 public:
     generator(problem pb, int sizeProblem);
 
+    generator();
+
     CNF &getCnf();
 
     problem getPb() const;
@@ -29,6 +31,8 @@ public:
     void genrateLiterals(int i);
 
     void generateChess(int boardSize);
+
+    void generateSAT(int nbClauses, int nbLiteral);
 
     int generateVariable(int a, int b, int offset);
 };

@@ -1,0 +1,10 @@
+Number of solutions: 9
+solution n°0: [6,7,14,4,2,9,12]
+solution n°1: [6,7,14,4,2,10]
+solution n°2: [6,7,14,4,1,9,12,15]
+solution n°3: [6,7,14,3,9,12,1]
+solution n°4: [6,7,13,11,2]
+solution n°5: [6,7,13,11,1,15,4]
+solution n°6: [6,7,13,12,15,1,4]
+solution n°7: [6,7,13,12,15,2,4]
+solution n°8: [6,8,13,11,2,16,3]

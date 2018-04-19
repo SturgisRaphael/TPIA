@@ -75,16 +75,17 @@ void CNF::readFromFile(string addr) {
     }
 }
 
-void CNF::solve() {
-    solve(-1, NO);
+int CNF::solve() {
+    return solve(-1, NO);
 }
 
-void CNF::solve(CNF::heuristic h) {
-    solve(-1, h);
+int CNF::solve(CNF::heuristic h) {
+    return solve(-1, h);
 }
 
-void CNF::solve(int nbSolution, CNF::heuristic h) {
+int CNF::solve(int nbSolution, CNF::heuristic h) {
     int solutionsFound = 0;
+    int nbNoeud = 0;
     vector<int > currentSolution;
     int currentLiteral, currentNegLiteral;
     cnfExecutionTree *executionTree;
@@ -99,6 +100,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
     nodeToExplore.push_back(&root);
 
     do{
+        nbNoeud++;
         currentLiteral = -1;
         executionTree = nodeToExplore.back();
         nodeToExplore.pop_back();
@@ -113,6 +115,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
                 currentLiteral = executionTree->firstSatisfyHeuristic();
                 break;
             case FIRST_FAIL:
+                currentLiteral = executionTree->firstFailHeuristic();
                 break;
             default:
                 currentLiteral = executionTree->noHeuristic();
@@ -120,19 +123,15 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
         }
         currentNegLiteral = negationOfVariable(currentLiteral + 1) - 1;
 
-        cout << "current variable = " << 1 + currentLiteral << endl;
-
         if(currentLiteral == -1 || executionTree->getLiterals()[currentLiteral].getElement() == -1)
         {
             solutions.push_back(executionTree->getCurrentModel());
             solutionsFound++;
-            cout << "solution found!!" << endl;
             continue;
         }
 
         else{
             if(executionTree->isPureLiteral(currentLiteral + 1)){
-                cout << "pure = " << currentLiteral + 1 << endl;
                 if(!findAllSolution)
                 {
                     //explore right
@@ -162,6 +161,7 @@ void CNF::solve(int nbSolution, CNF::heuristic h) {
 
     }while((!findAllSolution && (solutionsFound < nbSolution)) || !nodeToExplore.empty());
     nbSolutionsFound = solutionsFound;
+    return nbNoeud;
 }
 
 ostream &operator<<(ostream &os, const CNF &cnf) {

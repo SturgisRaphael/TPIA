@@ -62,6 +62,8 @@ public:
     friend ostream &operator<<(ostream &os, const cnfExecutionTree &tree);
 
     bool isPureLiteral(int i);
+
+    int firstFailHeuristic();
 };
 
 

@@ -14,7 +14,9 @@ generator::generator(generator::problem pb, int sizeProblem) : pb(pb), sizeProbl
         case CHESS:
             generateChess(sizeProblem);
             break;
-        case SAT3:break;
+        case SAT3:
+            generateSAT(sizeProblem, sizeProblem/2 + 1);
+            break;
     }
 }
 
@@ -122,7 +124,6 @@ void generator::generateChess(int boardSize) {
         }
     }
 
-
     for(int d = 1; d < boardSize; d++)
     {
         for(int j = d ; j < boardSize; j++)
@@ -178,3 +179,20 @@ generator::problem generator::getPb() const {
 int generator::getSizeProblem() const {
     return sizeProblem;
 }
+
+void generator::generateSAT(int nbClauses, int nbLiterals) {
+    srand(time(NULL));
+    int nbLiteralsInClause, literal;
+    for (int i = 0; i < nbClauses; i++){
+        linkedList l;
+        for(int j = 0; j < 3; j++)
+        {
+            literal = rand()%((nbLiterals*2)+1) + 1;
+            l.addElement(literal);
+        }
+        cnf.getClauses().push_back(l);
+    }
+    genrateLiterals(nbLiterals+1);
+}
+
+generator::generator() {}

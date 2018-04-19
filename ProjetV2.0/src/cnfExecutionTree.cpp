@@ -193,10 +193,31 @@ int cnfExecutionTree::firstSatisfyHeuristic() {
     int currentLiteral = -1;
     for(int i = 0; i < this->getLiterals().size(); i++)
     {
+        if (this->getLiterals()[i].getElement() != -1)
+            if(isPureLiteral(i + 1))
+                return i;
         if(this->getLiterals()[i].countElement() >= max){
             max = this->getLiterals()[i].countElement();
             currentLiteral = i;
         }
+
     }
     return currentLiteral;
 }
+
+int cnfExecutionTree::firstFailHeuristic() {
+    int max = 0;
+    int currentLiteral = -1, currentNegLiteral;
+    for(int i = 0; i < this->getLiterals().size(); i++)
+    {
+        currentNegLiteral = CNF::negationOfVariable(i + 1) - 1;
+        if (this->getLiterals()[i].getElement() != -1)
+            if(isPureLiteral(i + 1))
+                return i;
+        if(this->getLiterals()[currentNegLiteral].countElement() >= max){
+            max = this->getLiterals()[currentNegLiteral].countElement();
+            currentLiteral = i;
+        }
+
+    }
+    return currentLiteral;}

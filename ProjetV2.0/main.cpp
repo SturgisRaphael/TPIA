@@ -7,88 +7,106 @@
 using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-
-    //Generator::GenereFile (20, 50);
-
-    CNF cnf = CNF();
-    cnf.readFromFile("test3.txt");
-
-    cnfExecutionTree *executionTree = new cnfExecutionTree(cnf.getLiterals(), cnf.getClauses());
-
-    //cnf.solve();
-    //cout << cnf << endl;
-    //cout << executionTree << endl;
-
-//    cnf.generateProblemFile("test2.txt");
-
-//    cnf.solve();
-
-    /*
-     * c1 = a | b | c
-     * c2 = -a | b | c
-     * c3 = a
-     * a=1, -a = 2, b = 3, -b = 4, c = 5, -c = 6
-     * */
-
 /*
-    linkedList clauseList1 = linkedList(1);
-    clauseList1.addElement(3);
+    string fileName;
+    int nbNoeud = 0;
+    int start_s, stop_s;
 
-    linkedList clauseList2 = linkedList(2);
-
-    linkedList clauseList3 = linkedList(1);
-    clauseList3.addElement(2);
-
-    linkedList clauseList4;
-
-    linkedList clauseList5 = linkedList(1);
-    clauseList5.addElement(2);
-
-    linkedList clauseList6;
-
-    linkedList literalList1 = linkedList(1);
-    literalList1.addElement(3);
-    literalList1.addElement(5);
-
-    linkedList literalList2 = linkedList(2);
-    literalList2.addElement(3);
-    literalList2.addElement(5);
-
-    linkedList literalList3 = linkedList(1);
-
-    vector<linkedList> literals = {clauseList1, clauseList2, clauseList3, clauseList4, clauseList5, clauseList6};
-    vector<linkedList> clauses = {literalList1, literalList2, literalList3};
-
-    CNF cnf = CNF(literals, clauses);
-
-    cout << cnf << endl;
-
-    cnf.solve();
-
-    cnf.generateSolutionFile("test2.txt");
-*/
-
- /*
-    cout << cnf << endl;
-
-
-    for(auto &i : cnf.getSolutions())
+    cout << "Pigeon:" << endl;
+    for(int i = 2; i < 8; i++)
     {
-        for(auto &j : i)
-            cout << j << ",";
-        cout << endl;
+        fileName = "data/pigeon" + to_string(i);
+        generator gen = generator(generator::PIGEON, i);
+        gen.getCnf().generateProblemFile(fileName + ".pb");
+
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::NO);
+        stop_s=clock();
+
+        cout << "n/a," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_NO.sol");
+
+        gen = generator(generator::PIGEON, i);
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::FIRST_SATISFY);
+        stop_s=clock();
+
+        cout << "FIRST_SATISFY," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_FS.sol");
+
+        gen = generator(generator::PIGEON, i);
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::FIRST_FAIL);
+        stop_s=clock();
+
+        cout << "FIRST_FAIL," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_FF.sol");
     }
 
-    cout << endl;
+    cout << "Dames:" << endl;
+    for(int i = 2; i < 8; i++)
+    {
+        fileName = "data/dames" + to_string(i);
+        generator gen = generator(generator::CHESS, i);
+        gen.getCnf().generateProblemFile(fileName + ".pb");
+
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::NO);
+        stop_s=clock();
+
+        cout << "n/a," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_NO.sol");
+
+        gen = generator(generator::CHESS, i);
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::FIRST_SATISFY);
+        stop_s=clock();
+
+        cout << "FIRST_SATISFY," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_FS.sol");
+
+        gen = generator(generator::CHESS, i);
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::FIRST_FAIL);
+        stop_s=clock();
+
+        cout << "FIRST_FAIL," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_FF.sol");
+    }
+
+    cout << "3-SAT:" << endl;
+    for(int i = 2; i < 40; i++)
+    {
+        fileName = "data/3_sat" + to_string(i);
+        generator gen = generator(generator::SAT3, i);
+        gen.getCnf().generateProblemFile(fileName + ".pb");
+
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::NO);
+        stop_s=clock();
+
+        cout << "n/a," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_NO.sol");
+
+        gen = generator(generator::SAT3, i);
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::FIRST_SATISFY);
+        stop_s=clock();
+
+        cout << "FIRST_SATISFY," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_FS.sol");
+
+        gen = generator(generator::SAT3, i);
+        start_s=clock();
+        nbNoeud = gen.getCnf().solve(CNF::FIRST_FAIL);
+        stop_s=clock();
+
+        cout << "FIRST_FAIL," << i << "," << nbNoeud << "," << stop_s - start_s << endl;
+        gen.getCnf().generateSolutionFile(fileName + "_FF.sol");
+    }
 */
 
-    generator gen = generator(generator::CHESS, 5);
-    gen.getCnf().generateProblemFile("test.txt");
-    cout << gen.getCnf() << endl;
-
-    gen.getCnf().solve();
-    gen.getCnf().generateSolutionFile("test2.txt");
+    CNF cnf;
 
     return 0;
 }

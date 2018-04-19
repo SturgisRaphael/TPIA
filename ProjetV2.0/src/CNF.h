@@ -43,9 +43,10 @@ public:
 
     friend ostream &operator<<(ostream &os, const CNF &cnf);
 
-    void solve();
-    void solve(heuristic h);
-    void solve(int nbSolution, heuristic h);
+    int solve();
+
+    int solve(heuristic h);
+    int solve(int nbSolution, heuristic h);
 
     void generateProblemFile(string addr)const;
     void generateSolutionFile(string addr);
